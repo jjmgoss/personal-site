@@ -290,6 +290,21 @@ h2 {
   box-shadow: var(--shadow-soft);
 }
 
+.project-card-visual {
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(36, 80, 61, 0.12);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(239, 231, 219, 0.92));
+}
+
+.project-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
 .project-card-header {
   display: grid;
   gap: 0.75rem;
@@ -346,6 +361,42 @@ h2 {
 
 .project-detail {
   gap: 1.5rem;
+}
+
+.project-gallery {
+  gap: 1rem;
+}
+
+.project-screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.project-screenshot-card {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.project-screenshot-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(36, 80, 61, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(239, 231, 219, 0.9));
+}
+
+.project-screenshot-card figcaption {
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .project-facts {
@@ -498,7 +549,8 @@ h2 {
 
   .project-list,
   .post-list,
-  .project-facts {
+  .project-facts,
+  .project-screenshot-grid {
     grid-template-columns: 1fr;
   }
 
