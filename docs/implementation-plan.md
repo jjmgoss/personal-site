@@ -44,7 +44,7 @@ Acceptance criteria:
 
 Goal: create the smallest working Next.js site.
 
-Status: in progress.
+Status: complete.
 
 Tasks:
 
@@ -71,6 +71,8 @@ Acceptance criteria:
 ## Phase 2: Content Model
 
 Goal: make projects and writing pages content-driven.
+
+Status: in progress.
 
 Tasks:
 
