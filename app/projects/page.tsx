@@ -15,6 +15,15 @@ export default async function ProjectsPage() {
       <ul className="project-list">
         {projects.map((project) => (
           <li className="project-card" key={project.slug}>
+            {project.screenshots?.[0] ? (
+              <Link className="project-card-visual" href={`/projects/${project.slug}`}>
+                <img
+                  alt={project.screenshots[0].alt}
+                  className="project-card-image"
+                  src={project.screenshots[0].src}
+                />
+              </Link>
+            ) : null}
             <div className="project-card-header">
               <div className="stack-tight">
                 <p className="status-pill">{project.status}</p>
@@ -24,6 +33,9 @@ export default async function ProjectsPage() {
               </div>
               <p>{project.summary}</p>
             </div>
+            {project.screenshots?.length ? (
+              <p className="project-meta">Visuals: {project.screenshots.length}</p>
+            ) : null}
             <p className="project-meta">
               <span>Stack: {project.stack.join(' · ')}</span>
             </p>

@@ -13,6 +13,12 @@ const PROJECT_STATUSES = [
 
 export type ProjectStatus = (typeof PROJECT_STATUSES)[number];
 
+export type ProjectScreenshot = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type ProjectMetadata = {
   title: string;
   slug: string;
@@ -23,6 +29,7 @@ export type ProjectMetadata = {
   repo_url: string;
   live_url?: string;
   docs_url?: string;
+  screenshots?: ProjectScreenshot[];
 };
 
 export type ProjectEntry = ProjectMetadata & {
@@ -51,6 +58,35 @@ function isOptionalUrl(value: unknown): value is string | undefined {
 
 function toOptionalString(value: unknown): string | undefined {
   return isNonEmptyString(value) ? value.trim() : undefined;
+}
+
+function parseScreenshots(value: unknown, filePath: string): ProjectScreenshot[] | undefined {
+  if (value === undefined || value === null) {
+    return undefined;
+  }
+
+  if (!Array.isArray(value)) {
+    throw new Error(`Invalid project frontmatter in ${filePath}: "screenshots" must be a list when provided.`);
+  }
+
+  return value.map((item, index) => {
+    if (!item || typeof item !== 'object' || Array.isArray(item)) {
+      throw new Error(
+        `Invalid project frontmatter in ${filePath}: "screenshots[${index}]" must be an object.`
+      );
+    }
+
+    const screenshot = item as Record<string, unknown>;
+    const src = requireStringField(screenshot, 'src', filePath);
+    const alt = requireStringField(screenshot, 'alt', filePath);
+    const caption = toOptionalString(screenshot.caption);
+
+    return {
+      src,
+      alt,
+      caption,
+    };
+  });
 }
 
 function parseProjectMetadata(filePath: string, data: Record<string, unknown>): ProjectMetadata {
@@ -88,6 +124,7 @@ function parseProjectMetadata(filePath: string, data: Record<string, unknown>): 
     repo_url: repoUrl,
     live_url: toOptionalString(data.live_url),
     docs_url: toOptionalString(data.docs_url),
+    screenshots: parseScreenshots(data.screenshots, filePath),
   };
 }
 

@@ -64,6 +64,22 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           </li>
         ) : null}
       </ul>
+      {project.screenshots?.length ? (
+        <section className="project-gallery stack-tight">
+          <div className="stack-tight">
+            <p className="eyebrow">Visuals</p>
+            <h2>Screenshots and artifacts</h2>
+          </div>
+          <div className="project-screenshot-grid">
+            {project.screenshots.map((screenshot) => (
+              <figure className="project-screenshot-card" key={screenshot.src}>
+                <img alt={screenshot.alt} className="project-screenshot-image" src={screenshot.src} />
+                {screenshot.caption ? <figcaption>{screenshot.caption}</figcaption> : null}
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
       <div className="markdown-body">
         <ReactMarkdown>{project.content}</ReactMarkdown>
       </div>

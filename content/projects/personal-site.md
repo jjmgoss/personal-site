@@ -12,6 +12,10 @@ next_milestone: Expand project content and add the first writing and log pages.
 repo_url: https://github.com/jjmgoss/personal-site
 live_url:
 docs_url: https://github.com/jjmgoss/personal-site/tree/main/docs
+screenshots:
+  - src: /projects/personal-site/overview.svg
+    alt: Placeholder overview illustration for the personal-site project page.
+    caption: Public-safe placeholder artwork showing the site as a calm, static-first project studio.
 ---
 
 `personal-site` is the public home base for the projects in this workspace.
