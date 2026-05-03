@@ -79,6 +79,11 @@ a {
   box-shadow: var(--shadow);
 }
 
+.stack-tight {
+  display: grid;
+  gap: 0.5rem;
+}
+
 .eyebrow {
   margin: 0;
   color: var(--accent);
@@ -112,16 +117,25 @@ h1 {
 
 .project-card {
   display: grid;
-  gap: 0.5rem;
+  gap: 1rem;
   padding: 1rem 1.25rem;
   border: 1px solid var(--border);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
 }
 
+.project-card-header {
+  display: grid;
+  gap: 0.75rem;
+}
+
 .project-card h2,
 .project-card p {
   margin: 0;
+}
+
+.project-card h2 {
+  font-size: 1.5rem;
 }
 
 .project-meta {
@@ -130,6 +144,82 @@ h1 {
   gap: 0.75rem;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+.status-pill {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(20, 83, 45, 0.12);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-links a,
+.back-link {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.project-detail {
+  gap: 1.5rem;
+}
+
+.project-facts {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.project-facts div {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.project-facts dt,
+.project-facts dd {
+  margin: 0;
+}
+
+.project-facts dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.markdown-body {
+  display: grid;
+  gap: 1rem;
+  line-height: 1.75;
+}
+
+.markdown-body > * {
+  margin: 0;
+}
+
+.markdown-body a {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 @media (max-width: 640px) {
