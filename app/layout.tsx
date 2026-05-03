@@ -11,6 +11,7 @@ const navigationItems = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
   { href: '/writing', label: 'Writing' },
+  { href: '/now', label: 'Now' },
 ];
 
 export default function RootLayout({
@@ -61,6 +62,9 @@ export default function RootLayout({
                 </li>
                 <li>
                   <Link href="/writing">Writing</Link>
+                </li>
+                <li>
+                  <Link href="/now">Now</Link>
                 </li>
                 <li>
                   <a href="https://github.com/jjmgoss/personal-site" rel="noreferrer" target="_blank">
