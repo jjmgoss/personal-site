@@ -23,6 +23,17 @@ The MVP should be content-driven and simple.
 
 Do not add a database, authentication, CMS, comments, analytics pipeline, background jobs, admin dashboard, or dynamic server features unless a specific issue requests it.
 
+## Start-of-Task Repo Sync
+
+Before making a new branch or editing files, agents should start from the latest `main`.
+
+For the normal local Windows checkout, run:
+
+```powershell
+cd C:\Users\jjmgo\coding_projects\personal-site
+git checkout main
+git pull --ff-only origin main
+
 ## Repository Boundaries
 
 This repo owns the main personal/project site.
@@ -152,3 +163,4 @@ For repo-rails verification, from the separate `repo-rails` repository:
 ```powershell
 uv run repo-rails check jjmgoss/personal-site
 ```
+
