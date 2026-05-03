@@ -2,7 +2,9 @@
 
 ## Linked Issue Or Reference
 
-Refs #
+Closes #
+Use `Closes #N` when this PR completes the issue. Use `Refs #N` only when this PR is related but does not complete the issue.
+
 
 ## What Changed
 

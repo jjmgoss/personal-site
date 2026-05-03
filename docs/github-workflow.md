@@ -30,7 +30,7 @@ Issues should include:
 Pull requests should include:
 
 - a short summary
-- linked issue or reference
+- linked issue using Closes #N when the PR completes the issue, or Refs #N when it only relates to the issue
 - what changed
 - verification commands and results
 - risk or deployment impact
