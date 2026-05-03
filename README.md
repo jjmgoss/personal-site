@@ -105,9 +105,9 @@ docker compose up --build
 Then verify:
 
 ```text
-http://localhost:3000
-http://localhost:3000/projects
-http://localhost:3000/writing
+http://localhost:3001
+http://localhost:3001/projects
+http://localhost:3001/writing
 ```
 
 Stop the local production container cleanly with Ctrl+C in the compose terminal,
@@ -118,6 +118,8 @@ docker compose stop
 ```
 
 For the first Synology LAN deployment path, see `docs/synology-lan-deployment.md`.
+
+After SSHing into the Synology repo checkout, the normal LAN update command is `./scripts/deploy-synology-lan.sh`.
 
 ## Project Content
 
