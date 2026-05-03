@@ -82,6 +82,12 @@ Create a production build:
 npm run build
 ```
 
+Validate content frontmatter, screenshot references, and simple internal content links:
+
+```powershell
+npm run validate:content
+```
+
 Start the production server after a build:
 
 ```powershell
