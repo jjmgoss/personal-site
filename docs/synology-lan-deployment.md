@@ -18,7 +18,7 @@ This guide does not change app behavior, container behavior, public routing, or 
 The current goal is to run the site on a Synology host so it is reachable from devices on the same LAN at:
 
 ```text
-http://<synology-host>:3000
+http://<synology-host>:3001
 ```
 
 This is the first hosted deployment step after local Docker verification.
@@ -45,11 +45,12 @@ Before starting, confirm the following:
 
 - the repository has been pushed to a reachable Git host
 - Synology has Docker Engine support available through Docker or Container Manager
-- `docker compose` or a Container Manager-compatible compose workflow is available on Synology
+- `docker-compose` or a Container Manager-compatible compose workflow is available on Synology
 - the deploy operator can access the Synology host through a normal, approved admin path
 - the chosen Synology destination has enough space for the repository, image layers, and logs
 - the local machine has already verified the app with `npm run build`
 - the local machine has already verified the Docker configuration with `docker compose config`
+- the Synology SSH user can run the required Docker commands, which may mean using `sudo docker-compose`
 
 ## Expected Deployment Shape
 
@@ -57,15 +58,15 @@ The expected shape is a single application container built from this repository:
 
 ```text
 Git checkout on Synology
-  -> docker compose build
+  -> docker-compose build
   -> personal-site container
-  -> port 3000 exposed on the LAN
+  -> port 3001 exposed on the LAN
 ```
 
 Expected runtime characteristics:
 
 - one service: `personal-site`
-- one exposed port: `3000`
+- one exposed port: `3001`
 - no database
 - no persistent application volume required for normal operation
 - no committed secrets
@@ -79,7 +80,7 @@ Use placeholders like these in local notes, checklists, or commands:
 <deploy-user>
 <app-directory>
 <repo-url>
-http://<synology-host>:3000
+http://<synology-host>:3001
 ```
 
 Do not commit or publish:
@@ -106,9 +107,9 @@ docker compose up --build
 Verify these routes locally:
 
 ```text
-http://localhost:3000
-http://localhost:3000/projects
-http://localhost:3000/writing
+http://localhost:3001
+http://localhost:3001/projects
+http://localhost:3001/writing
 ```
 
 Stop the local compose run cleanly when finished:
@@ -158,24 +159,65 @@ Optional safety check:
 
 ```bash
 git status
-docker compose config
+sudo docker-compose config
 ```
 
 The working tree should be clean before starting or updating the deployment.
 
 ## Step 4: Build And Start With Docker Compose
 
-From the Synology checkout directory:
+From the Synology checkout directory, the normal update flow is:
 
 ```bash
 cd <app-directory>
-docker compose up --build -d
+./scripts/deploy-synology-lan.sh
+```
+
+The script performs the safe update sequence for the current Synology environment:
+
+- `git fetch origin`
+- `git checkout main`
+- `git pull --ff-only origin main`
+- `sudo docker-compose config`
+- `sudo docker-compose up --build -d`
+- `sudo docker-compose ps`
+- `sudo docker-compose logs --tail=100 personal-site`
+
+By default the script uses:
+
+```bash
+sudo docker-compose
+```
+
+If the Synology shell environment differs, the compose command can be overridden briefly for one run:
+
+```bash
+COMPOSE_CMD="docker-compose" ./scripts/deploy-synology-lan.sh
+```
+
+or:
+
+```bash
+COMPOSE_CMD="sudo docker-compose" ./scripts/deploy-synology-lan.sh
+```
+
+If the script is not available yet and you need the equivalent manual flow, run:
+
+```bash
+cd <app-directory>
+git fetch origin
+git checkout main
+git pull --ff-only origin main
+sudo docker-compose config
+sudo docker-compose up --build -d
+sudo docker-compose ps
+sudo docker-compose logs --tail=100 personal-site
 ```
 
 Then confirm the service is running:
 
 ```bash
-docker compose ps
+sudo docker-compose ps
 ```
 
 If Synology Container Manager is being used instead of a raw shell session, use the same repository files and equivalent compose-project actions:
@@ -184,7 +226,7 @@ If Synology Container Manager is being used instead of a raw shell session, use 
 - review the rendered compose configuration
 - build the image from the current checkout
 - start the `personal-site` service
-- confirm port `3000` is published
+- confirm port `3001` is published
 
 The guide still assumes the committed `docker-compose.yml` remains the source of truth.
 
@@ -193,9 +235,9 @@ The guide still assumes the committed `docker-compose.yml` remains the source of
 From another device on the same network, or from the Synology host itself, verify:
 
 ```text
-http://<synology-host>:3000
-http://<synology-host>:3000/projects
-http://<synology-host>:3000/writing
+http://<synology-host>:3001
+http://<synology-host>:3001/projects
+http://<synology-host>:3001/writing
 ```
 
 Confirm:
@@ -211,7 +253,7 @@ If the service is up but the site is not behaving as expected, inspect logs:
 
 ```bash
 cd <app-directory>
-docker compose logs --tail=100 personal-site
+sudo docker-compose logs --tail=100 personal-site
 ```
 
 Useful checks:
@@ -227,15 +269,18 @@ Use a safe, manual update path:
 
 ```bash
 cd <app-directory>
-git pull
-docker compose config
-docker compose up --build -d
-docker compose ps
+./scripts/deploy-synology-lan.sh
 ```
 
 Then re-run the LAN verification URLs.
 
 Update only after the new revision has already passed local verification.
+
+If needed, the script can use an alternate compose command for one run:
+
+```bash
+COMPOSE_CMD="docker-compose" ./scripts/deploy-synology-lan.sh
+```
 
 ## Rollback
 
@@ -244,14 +289,14 @@ If a newly deployed revision fails, return to the last known good revision:
 ```bash
 cd <app-directory>
 git checkout <previous-known-good-commit>
-docker compose up --build -d
-docker compose ps
+sudo docker-compose up --build -d
+sudo docker-compose ps
 ```
 
 Then verify again on the LAN:
 
 ```text
-http://<synology-host>:3000
+http://<synology-host>:3001
 ```
 
 Record which revision failed and what was observed before trying another update.
@@ -260,10 +305,11 @@ Record which revision failed and what was observed before trying another update.
 
 If the site does not come up cleanly, check the following:
 
-- `docker compose config` does not report config errors
+- `sudo docker-compose config` does not report config errors
 - the Synology host has enough free space for the image build
-- port `3000` is not already occupied by another service
+- port `3001` is not already occupied by another service
 - the checkout contains the expected `Dockerfile` and `docker-compose.yml`
+- the checkout contains `scripts/deploy-synology-lan.sh`
 - the container is still running after start-up
 - the LAN client can resolve or reach `<synology-host>`
 
