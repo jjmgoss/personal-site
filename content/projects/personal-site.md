@@ -1,17 +1,31 @@
 ---
 title: Personal Site
 slug: personal-site
-status: planning
-summary: Static-first site for organizing projects, notes, and deployment writeups.
+status: active
+summary: Static-first project hub for side projects, documentation, writing, deployment notes, and links to live demos.
 stack:
   - Next.js
   - TypeScript
   - Markdown
-next_milestone: Add the project content model and initial project pages.
+  - GitHub Issues
+next_milestone: Expand project content and add the first writing and log pages.
 repo_url: https://github.com/jjmgoss/personal-site
 live_url:
 docs_url: https://github.com/jjmgoss/personal-site/tree/main/docs
 ---
 
-This repository is the public project hub for ongoing software experiments,
-documentation, and implementation notes.
+`personal-site` is the public home base for the projects in this workspace.
+
+The site is meant to stay static-first and content-oriented. Instead of pulling
+project data from a database or CMS, it generates pages from files that are easy
+to review in pull requests and easy for coding agents to update safely.
+
+The initial scope is intentionally narrow:
+
+- a homepage that explains the project lab
+- a project catalog with detail pages
+- a writing/log section for implementation notes
+- public-safe deployment notes and links to live demos when they exist
+
+The current milestone is to make the project catalog feel real with useful
+entries and then extend the same content-driven pattern to the writing section.
