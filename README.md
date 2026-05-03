@@ -6,9 +6,9 @@ This repository is intended to become the public home base for ongoing AI-assist
 
 ## Current Status
 
-This repo is in planning/bootstrap mode.
+This repo now has a minimal Next.js + TypeScript scaffold using the App Router.
 
-The first goal is to establish the architecture, implementation plan, deployment strategy, and agent workflow. The actual website scaffold will come in a later PR.
+The current goal is to keep the site static-first and content-oriented while future issues add the content model, project entries, writing pages, and deployment packaging.
 
 ## Product Shape
 
@@ -64,12 +64,26 @@ See:
 
 ## Local Development
 
-Local development commands will be added after the Next.js scaffold exists.
-
-Expected future shape:
+Install dependencies:
 
 ```powershell
 npm install
+```
+
+Start the development server:
+
+```powershell
 npm run dev
-npm run lint
+```
+
+Create a production build:
+
+```powershell
 npm run build
+```
+
+Start the production server after a build:
+
+```powershell
+npm run start
+```

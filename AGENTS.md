@@ -123,18 +123,18 @@ Do not modify GitHub Actions workflows unless the issue explicitly asks for work
 
 Do not create deployment scripts that assume real infrastructure values unless the issue explicitly asks for that and placeholders are used.
 
-## Expected Future Local Commands
+## Local Commands
 
-After the Next.js app is scaffolded, expected commands will likely include:
+The current scaffold supports:
 
 ```powershell
 npm install
 npm run dev
-npm run lint
 npm run build
+npm run start
 ```
 
-Do not invent final commands until the scaffold exists. Keep README and docs updated as the actual project shape becomes real.
+Keep README and docs updated as the project shape evolves.
 
 ## Validation Expectations
 

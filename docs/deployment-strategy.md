@@ -54,16 +54,15 @@ Each stage should work before moving to the next.
 
 ## Local Development
 
-After the app scaffold exists, expected commands will likely be:
+The current local commands are:
 
 ```powershell
 npm install
 npm run dev
-npm run lint
 npm run build
 ```
 
-The actual commands should be documented in `README.md` after the scaffold is created.
+Use `npm run start` to launch the production server locally after a successful build.
 
 ## Local Production Build
 
