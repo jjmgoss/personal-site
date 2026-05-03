@@ -117,6 +117,8 @@ or run:
 docker compose stop
 ```
 
+For the first Synology LAN deployment path, see `docs/synology-lan-deployment.md`.
+
 ## Project Content
 
 Project entries live in `content/projects/` as Markdown files with frontmatter.

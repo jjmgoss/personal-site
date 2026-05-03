@@ -125,6 +125,8 @@ Build and test locally
   -> verify on LAN
 ```
 
+The current LAN-only deployment guide lives in `docs/synology-lan-deployment.md`.
+
 Only after LAN deployment works should public routing be configured.
 
 ## Public Access Options
