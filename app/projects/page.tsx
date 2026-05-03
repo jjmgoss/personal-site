@@ -5,12 +5,12 @@ export default async function ProjectsPage() {
   const projects = await getProjectEntries();
 
   return (
-    <section className="stack">
+    <section className="stack page-shell">
       <p className="eyebrow">Projects</p>
-      <h1>Project content foundation</h1>
+      <h1>Project catalog</h1>
       <p className="lede">
-        Project entries are generated from Markdown content files so the catalog
-        stays static-first, reviewable, and easy to extend.
+        Each entry is generated from repository content files so the catalog stays
+        static-first, reviewable, and straightforward to maintain.
       </p>
       <ul className="project-list">
         {projects.map((project) => (
