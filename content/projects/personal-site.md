@@ -2,34 +2,33 @@
 title: Personal Site
 slug: personal-site
 status: active
-summary: Static-first project hub for side projects, documentation, writing, deployment notes, and links to live demos.
+summary: Portfolio and technical-notes hub for software experiments, project delivery, and AI-assisted workflow design.
 stack:
   - Next.js
   - TypeScript
   - Markdown
   - GitHub Issues
-next_milestone: Expand project content and add the first writing and log pages.
+next_milestone: Tighten the public presentation and keep expanding project and notes coverage.
 repo_url: https://github.com/jjmgoss/personal-site
 live_url:
 docs_url: https://github.com/jjmgoss/personal-site/tree/main/docs
 screenshots:
   - src: /projects/personal-site/overview.svg
-    alt: Placeholder overview illustration for the personal-site project page.
-    caption: Public-safe placeholder artwork showing the site as a calm, static-first project studio.
+    alt: Overview illustration for the Personal Site project page.
+    caption: A simple overview graphic used until real product screenshots are worth publishing.
 ---
 
-`personal-site` is the public home base for the projects in this workspace.
+`personal-site` is the portfolio and notes hub for the work in this workspace.
 
-The site is meant to stay static-first and content-oriented. Instead of pulling
-project data from a database or CMS, it generates pages from files that are easy
-to review in pull requests and easy for coding agents to update safely.
+The goal is straightforward: keep projects, notes, and delivery experiments in one
+place that is easy to update and easy to understand from the outside.
 
-The initial scope is intentionally narrow:
+The current scope is still intentionally narrow:
 
-- a homepage that explains the project lab
-- a project catalog with detail pages
-- a writing/log section for implementation notes
-- public-safe deployment notes and links to live demos when they exist
+- a short professional landing page
+- a project catalog with honest work-in-progress status
+- notes on what is being built and what is being learned
+- deployment and process documentation when it helps explain the work
 
-The current milestone is to make the project catalog feel real with useful
-entries and then extend the same content-driven pattern to the writing section.
+The current milestone is to make the public presentation strong enough to share
+without pretending the projects are more polished than they are.

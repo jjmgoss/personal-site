@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
@@ -14,6 +15,22 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
+export async function generateMetadata({ params }: WritingDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const entry = await getWritingEntry(slug);
+
+  if (!entry) {
+    return {
+      title: 'Notes',
+    };
+  }
+
+  return {
+    title: entry.title,
+    description: entry.summary,
+  };
+}
+
 export default async function WritingDetailPage({ params }: WritingDetailPageProps) {
   const { slug } = await params;
   const entry = await getWritingEntry(slug);
@@ -25,9 +42,9 @@ export default async function WritingDetailPage({ params }: WritingDetailPagePro
   return (
     <article className="stack page-shell writing-detail">
       <Link className="back-link" href="/writing">
-        Back to writing
+        Back to notes
       </Link>
-      <p className="eyebrow">Writing</p>
+      <p className="eyebrow">Notes</p>
       <div className="stack-tight">
         <p className="post-date">{entry.date}</p>
         <h1>{entry.title}</h1>

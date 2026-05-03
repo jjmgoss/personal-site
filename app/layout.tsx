@@ -3,15 +3,16 @@ import Link from 'next/link';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'personal-site',
-  description: 'A static-first hub for projects, notes, and writing.',
+  title: {
+    default: 'Jason Goss',
+    template: '%s | Jason Goss',
+  },
+  description: 'Software projects, technical notes, and AI-assisted experiments by Jason Goss.',
 };
 
 const navigationItems = [
-  { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
-  { href: '/writing', label: 'Writing' },
-  { href: '/now', label: 'Now' },
+  { href: '/writing', label: 'Notes' },
 ];
 
 export default function RootLayout({
@@ -26,13 +27,13 @@ export default function RootLayout({
           <div className="site-frame">
             <header className="site-header">
               <div className="site-brand">
-                <p className="site-kicker">Public lab notebook</p>
+                <p className="site-kicker">Software projects and notes</p>
                 <Link className="site-title" href="/">
-                  personal-site
+                  Jason Goss
                 </Link>
                 <p className="site-subtitle">
-                  Static-first project pages, writing notes, and public documentation
-                  for ongoing software work.
+                  AI-assisted software experiments, project notes, and work in progress
+                  aimed at getting useful work done with less manual effort.
                 </p>
               </div>
               <nav aria-label="Primary">
@@ -50,10 +51,9 @@ export default function RootLayout({
             <main className="site-main">{children}</main>
             <footer className="site-footer">
               <div>
-                <p className="site-footer-title">personal-site</p>
+                <p className="site-footer-title">Jason Goss</p>
                 <p className="site-footer-copy">
-                  A calm, static-first studio for project documentation, working notes,
-                  and links to related repositories.
+                  Projects, notes, and experiments in software, automation, and agent workflows.
                 </p>
               </div>
               <ul className="site-footer-links">
@@ -61,7 +61,7 @@ export default function RootLayout({
                   <Link href="/projects">Projects</Link>
                 </li>
                 <li>
-                  <Link href="/writing">Writing</Link>
+                  <Link href="/writing">Notes</Link>
                 </li>
                 <li>
                   <Link href="/now">Now</Link>
