@@ -22,6 +22,8 @@ active_projects_intro: "The current set is small on purpose: a few projects that
 active_projects:
   - slug: personal-site
     summary: "The portfolio and notes hub itself. Right now the work is tightening the public presentation so it feels stable enough to share without pretending it is finished."
+  - slug: autonomous-product-development
+    summary: "An AI-assisted research and build workflow for evaluating small product ideas, documenting the reasoning, and deciding when a prototype is actually worth building."
   - slug: hn-trend-tracker
     summary: "A separate project exploring Hacker News trend collection, analysis, and presentation. It remains one of the active projects documented from this site."
   - slug: repo-rails
@@ -32,6 +34,8 @@ explore_links:
     label: Project catalog
   - href: /projects/personal-site
     label: Personal Site
+  - href: /projects/autonomous-product-development
+    label: Autonomous Product Development
   - href: /projects/hn-trend-tracker
     label: HN Trend Tracker
   - href: /projects/repo-rails
