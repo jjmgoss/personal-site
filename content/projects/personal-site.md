@@ -12,10 +12,6 @@ next_milestone: Tighten the public presentation and keep expanding project and n
 repo_url: https://github.com/jjmgoss/personal-site
 live_url:
 docs_url: https://github.com/jjmgoss/personal-site/tree/main/docs
-screenshots:
-  - src: /projects/personal-site/overview.svg
-    alt: Overview illustration for the Personal Site project page.
-    caption: A simple overview graphic used until real product screenshots are worth publishing.
 ---
 
 `personal-site` is the portfolio and notes hub for the work in this workspace.
