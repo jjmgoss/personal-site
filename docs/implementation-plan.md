@@ -20,7 +20,7 @@ The first objective is not to build a complex website. The first objective is to
 
 Goal: establish the repository as an agent-friendly project workspace.
 
-Status: in progress.
+Status: complete.
 
 Tasks:
 
@@ -38,11 +38,13 @@ Acceptance criteria:
 - Repo has project-specific architecture docs.
 - Repo has implementation phases.
 - Repo has safe agent instructions.
-- Repo has no app scaffold yet.
+- Repo is ready for the first app scaffold PR.
 
 ## Phase 1: Minimal Next.js Scaffold
 
 Goal: create the smallest working Next.js site.
+
+Status: in progress.
 
 Tasks:
 
