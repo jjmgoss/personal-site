@@ -23,7 +23,7 @@ export default async function WritingDetailPage({ params }: WritingDetailPagePro
   }
 
   return (
-    <article className="stack writing-detail">
+    <article className="stack page-shell writing-detail">
       <Link className="back-link" href="/writing">
         Back to writing
       </Link>

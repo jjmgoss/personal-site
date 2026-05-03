@@ -23,7 +23,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   }
 
   return (
-    <article className="stack project-detail">
+    <article className="stack page-shell project-detail">
       <Link className="back-link" href="/projects">
         Back to projects
       </Link>

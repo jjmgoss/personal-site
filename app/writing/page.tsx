@@ -5,12 +5,12 @@ export default async function WritingPage() {
   const entries = await getWritingEntries();
 
   return (
-    <section className="stack">
+    <section className="stack page-shell">
       <p className="eyebrow">Writing</p>
       <h1>Implementation notes and project log</h1>
       <p className="lede">
         Writing posts are generated from Markdown files so implementation notes,
-        project updates, and longer-form writeups stay reviewable and static-first.
+        project updates, and longer-form writeups stay reviewable, calm, and static-first.
       </p>
       <ul className="post-list">
         {entries.map((entry) => (
