@@ -119,3 +119,13 @@ export async function getProjectEntries(): Promise<ProjectEntry[]> {
 
   return projects.sort((left, right) => left.title.localeCompare(right.title));
 }
+
+export async function getProjectEntry(slug: string): Promise<ProjectEntry | undefined> {
+  const projects = await getProjectEntries();
+  return projects.find((project) => project.slug === slug);
+}
+
+export async function getProjectSlugs(): Promise<string[]> {
+  const projects = await getProjectEntries();
+  return projects.map((project) => project.slug);
+}
