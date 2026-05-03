@@ -88,6 +88,35 @@ Start the production server after a build:
 npm run start
 ```
 
+## Local Docker Test
+
+Build the local production image:
+
+```powershell
+docker build -t personal-site:local .
+```
+
+Run the local production container with Compose:
+
+```powershell
+docker compose up --build
+```
+
+Then verify:
+
+```text
+http://localhost:3000
+http://localhost:3000/projects
+http://localhost:3000/writing
+```
+
+Stop the local production container cleanly with Ctrl+C in the compose terminal,
+or run:
+
+```powershell
+docker compose stop
+```
+
 ## Project Content
 
 Project entries live in `content/projects/` as Markdown files with frontmatter.

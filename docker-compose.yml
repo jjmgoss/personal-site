@@ -1,0 +1,10 @@
+services:
+  personal-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: personal-site:local
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
