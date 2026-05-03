@@ -1,0 +1,36 @@
+{
+  "title": "Jason Goss",
+  "metadataDescription": "Software projects, technical notes, and AI-assisted experiments by Jason Goss.",
+  "headerKicker": "Software projects and notes",
+  "headerSubtitle": "AI-assisted software experiments, project notes, and work in progress aimed at getting useful work done with less manual effort.",
+  "footerTitle": "Jason Goss",
+  "footerSummary": "Projects, notes, and experiments in software, automation, and agent workflows.",
+  "primaryNav": [
+    {
+      "href": "/projects",
+      "label": "Projects"
+    },
+    {
+      "href": "/writing",
+      "label": "Notes"
+    }
+  ],
+  "footerLinks": [
+    {
+      "href": "/projects",
+      "label": "Projects"
+    },
+    {
+      "href": "/writing",
+      "label": "Notes"
+    },
+    {
+      "href": "/now",
+      "label": "Now"
+    },
+    {
+      "href": "https://github.com/jjmgoss/personal-site",
+      "label": "Source"
+    }
+  ]
+}

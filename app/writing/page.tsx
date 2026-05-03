@@ -1,23 +1,25 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { getNotesPageContent } from '@/lib/content/site';
 import { getWritingEntries } from '@/lib/content/writing';
 
-export const metadata: Metadata = {
-  title: 'Notes',
-  description: 'Technical notes and build writeups from ongoing software and AI projects.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const pageContent = await getNotesPageContent();
+
+  return {
+    title: pageContent.metadataTitle,
+    description: pageContent.metadataDescription,
+  };
+}
 
 export default async function WritingPage() {
-  const entries = await getWritingEntries();
+  const [entries, pageContent] = await Promise.all([getWritingEntries(), getNotesPageContent()]);
 
   return (
     <section className="stack page-shell">
-      <p className="eyebrow">Notes</p>
-      <h1>Notes from the build process</h1>
-      <p className="lede">
-        Short technical notes, project updates, and writeups on what is working, what is
-        changing, and what is worth keeping from the experiments.
-      </p>
+      <p className="eyebrow">{pageContent.eyebrow}</p>
+      <h1>{pageContent.headline}</h1>
+      <p className="lede">{pageContent.intro}</p>
       <ul className="post-list">
         {entries.map((entry) => (
           <li className="post-card" key={entry.slug}>

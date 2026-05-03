@@ -143,3 +143,18 @@ Writing and log posts live in `content/writing/` as Markdown files with frontmat
 
 Each post should define metadata such as title, slug, date, summary, tags, and
 related projects.
+
+## Editing Copy
+
+Common public site copy now lives under `content/site/`.
+
+- Edit project pages in `content/projects/`.
+- Edit notes and writing entries in `content/writing/`.
+- Edit site-level copy such as the homepage, shared header/footer text, projects intro, notes intro, and `/now` page in `content/site/`.
+
+After editing content, run:
+
+```powershell
+npm run validate:content
+npm run build
+```
