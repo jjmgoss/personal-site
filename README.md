@@ -94,3 +94,10 @@ Project entries live in `content/projects/` as Markdown files with frontmatter.
 
 Each project entry should define metadata such as title, slug, status, summary,
 stack, next milestone, and public-safe repository or docs URLs.
+
+## Writing Content
+
+Writing and log posts live in `content/writing/` as Markdown files with frontmatter.
+
+Each post should define metadata such as title, slug, date, summary, tags, and
+related projects.
