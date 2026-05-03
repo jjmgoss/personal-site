@@ -133,6 +133,12 @@ Only after LAN deployment works should public routing be configured.
 
 There are three likely public access models.
 
+The current public routing decision is documented in `docs/public-routing-decision.md`.
+
+The chosen first public routing model is Cloudflare Tunnel for `lab.jjmgoss.com`.
+
+The current LAN-only Synology deployment remains the baseline until that later implementation work is explicitly approved.
+
 ### Option 1: Cloudflare Tunnel
 
 Cloudflare Tunnel avoids direct inbound port forwarding to the home network.
@@ -194,7 +200,7 @@ Recommended order:
 3. Run Docker container locally.
 4. Deploy to Synology on LAN.
 5. Decide public access model.
-6. Expose only the main site publicly.
+6. Implement Cloudflare Tunnel for `lab.jjmgoss.com` only after separate approval.
 7. Add side-project subdomains later.
 
 Do not start with public exposure.
@@ -326,7 +332,7 @@ Avoid Synology-only assumptions in app code.
 These decisions should be made later, after the static app runs locally:
 
 1. Use static export or Next.js server runtime?
-2. Use Cloudflare Tunnel or direct Caddy/DDNS for public home hosting?
+2. When should the Cloudflare Tunnel decision be implemented for `lab.jjmgoss.com`?
 3. Keep public hosting on Synology or move to cheap VPS?
 4. Add RSS?
 5. Add analytics?
