@@ -43,6 +43,10 @@ jobs:
         if: ${{ hashFiles('package.json') != '' }}
         run: npm ci
 
+      - name: Validate content
+        if: ${{ hashFiles('package.json') != '' }}
+        run: npm run validate:content
+
       - name: Build app
         if: ${{ hashFiles('package.json') != '' }}
         run: npm run build

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "validate:content": "node scripts/validate-content.mjs",
     "build": "next build",
     "start": "next start"
   },
