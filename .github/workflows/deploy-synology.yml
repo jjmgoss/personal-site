@@ -1,0 +1,61 @@
+name: Deploy Synology
+
+# Manual-only repo-rails skeleton.
+# Review network posture, runner choice, and secret scope before enabling this
+# workflow for a repository-specific deployment architecture.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: synology
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Manual posture notice
+        shell: bash
+        run: |
+          echo "This repo-rails workflow is a manual-only Synology deploy skeleton."
+          echo "Review SSH reachability, runner/network posture, and repository-specific deployment requirements before use."
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SYNOLOGY_SSH_KEY }}
+
+      - name: Validate required secrets
+        shell: bash
+        env:
+          SYNOLOGY_HOST: ${{ secrets.SYNOLOGY_HOST }}
+          SYNOLOGY_USER: ${{ secrets.SYNOLOGY_USER }}
+          SYNOLOGY_APP_DIR: ${{ secrets.SYNOLOGY_APP_DIR }}
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in SYNOLOGY_HOST SYNOLOGY_USER SYNOLOGY_APP_DIR; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::Missing required secret $name"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Run configured remote deploy command
+        shell: bash
+        env:
+          SYNOLOGY_HOST: ${{ secrets.SYNOLOGY_HOST }}
+          SYNOLOGY_USER: ${{ secrets.SYNOLOGY_USER }}
+          SYNOLOGY_APP_DIR: ${{ secrets.SYNOLOGY_APP_DIR }}
+        run: |
+          set -euo pipefail
+          ssh -o StrictHostKeyChecking=accept-new "$SYNOLOGY_USER@$SYNOLOGY_HOST" <<EOF
+          export SYNOLOGY_APP_DIR="$SYNOLOGY_APP_DIR"
+          cd "$SYNOLOGY_APP_DIR" && ./deploy.synology.sh
+          EOF
