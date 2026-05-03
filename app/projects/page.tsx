@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getProjectEntries } from '@/lib/content/projects';
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Work-in-progress software, automation, and AI experiments by Jason Goss.',
+};
 
 export default async function ProjectsPage() {
   const projects = await getProjectEntries();
@@ -7,10 +13,10 @@ export default async function ProjectsPage() {
   return (
     <section className="stack page-shell">
       <p className="eyebrow">Projects</p>
-      <h1>Project catalog</h1>
+      <h1>Projects in progress</h1>
       <p className="lede">
-        Each entry is generated from repository content files so the catalog stays
-        static-first, reviewable, and straightforward to maintain.
+        A working portfolio of tools, experiments, and systems that are getting more
+        useful over time. Some are rough. All of them are real.
       </p>
       <ul className="project-list">
         {projects.map((project) => (
@@ -31,10 +37,10 @@ export default async function ProjectsPage() {
                   <Link href={`/projects/${project.slug}`}>{project.title}</Link>
                 </h2>
               </div>
-              <p>{project.summary}</p>
+              <p className="card-copy">{project.summary}</p>
             </div>
             {project.screenshots?.length ? (
-              <p className="project-meta">Visuals: {project.screenshots.length}</p>
+              <p className="project-meta">Preview available</p>
             ) : null}
             <p className="project-meta">
               <span>Stack: {project.stack.join(' · ')}</span>

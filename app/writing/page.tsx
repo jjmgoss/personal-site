@@ -1,16 +1,22 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getWritingEntries } from '@/lib/content/writing';
+
+export const metadata: Metadata = {
+  title: 'Notes',
+  description: 'Technical notes and build writeups from ongoing software and AI projects.',
+};
 
 export default async function WritingPage() {
   const entries = await getWritingEntries();
 
   return (
     <section className="stack page-shell">
-      <p className="eyebrow">Writing</p>
-      <h1>Implementation notes and project log</h1>
+      <p className="eyebrow">Notes</p>
+      <h1>Notes from the build process</h1>
       <p className="lede">
-        Writing posts are generated from Markdown files so implementation notes,
-        project updates, and longer-form writeups stay reviewable, calm, and static-first.
+        Short technical notes, project updates, and writeups on what is working, what is
+        changing, and what is worth keeping from the experiments.
       </p>
       <ul className="post-list">
         {entries.map((entry) => (

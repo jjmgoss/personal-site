@@ -1,11 +1,17 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Now',
+  description: 'A current snapshot of Jason Goss projects, priorities, and work in progress.',
+};
 
 const activeProjects = [
   {
     href: '/projects/personal-site',
-    title: 'personal-site',
+    title: 'Personal Site',
     summary:
-      'The main hub for project documentation, writing, and deployment notes. The current focus is making the site clearer and more useful before public launch.',
+      'The portfolio and notes hub itself. Right now the work is tightening the public presentation so it feels stable enough to share without pretending it is finished.',
   },
   {
     href: '/projects/hn-trend-tracker',
@@ -25,27 +31,27 @@ const statusSections = [
   {
     title: 'Current focus',
     body:
-      'The current focus is improving the project site itself: clearer navigation, better public-safe project summaries, more writing, and a status snapshot that explains what is finished and what is still intentionally private.',
+      'Right now the focus is sharpening the public presentation: clearer project pages, better notes, and a stronger explanation of the work without turning the site into a product pitch.',
   },
   {
-    title: 'Site status',
+    title: 'What exists now',
     body:
-      'The site is already content-driven. Project pages and writing pages are generated from Markdown content, and the app stays static-first so updates remain easy to review and cheap to host.',
+      'Projects, notes, and the current snapshot are already live in the app. The structure is simple on purpose so adding work stays lightweight instead of turning into site maintenance.',
   },
   {
     title: 'Deployment status',
     body:
-      'The site is running on a LAN-first self-hosted deployment. Local Docker and Synology deployment paths are working, and public routing has been planned but is not enabled yet.',
+      'The site runs in a LAN-first self-hosted setup today. Public routing has been planned, but it is still intentionally off while the content and presentation get stronger.',
   },
   {
-    title: 'What is not public yet',
+    title: 'What is still intentionally private',
     body:
-      'Public exposure, tunnel configuration, DNS changes, and other internet-facing deployment steps are intentionally paused. The current priority is to make the site itself more complete before turning it outward.',
+      'Internet-facing deployment, infrastructure details, and other operational mechanics are not the story yet. The goal is to make the work clearer first, then make it public.',
   },
   {
     title: 'Next milestones',
     body:
-      'The likely next steps are broadening the site content, refining the project catalog, adding more public-safe writing, and continuing UI polish so the site feels complete before public launch.',
+      'Next up: expand project coverage, keep writing down what is learned, and keep tightening the parts that make the work feel credible from the outside.',
   },
 ];
 
@@ -53,18 +59,18 @@ export default function NowPage() {
   return (
     <section className="stack page-shell">
       <p className="eyebrow">Now</p>
-      <h1>Current snapshot</h1>
+      <h1>What I’m focused on now</h1>
       <p className="lede">
-        This site is a public-safe project snapshot: what is being built, what is already
-        working, and what is intentionally still private while the site takes shape.
+        A quick snapshot of the work in motion, what feels solid enough to talk about,
+        and what is still staying behind the curtain for now.
       </p>
 
       <div className="stack-tight">
-        <h2>What this site is</h2>
+        <h2>What this is</h2>
         <p className="lede">
-          personal-site is the readable front door for ongoing software work. It gathers
-          project summaries, implementation notes, and deployment documentation into one
-          static-first place that stays reviewable and calm.
+          This site is the public-facing record of software projects, AI experiments,
+          and technical notes that are still being worked on. It is meant to stay useful,
+          direct, and honest about what is finished versus what is still taking shape.
         </p>
       </div>
 
@@ -83,8 +89,8 @@ export default function NowPage() {
       <div className="stack-tight">
         <h2>Active projects</h2>
         <p className="lede">
-          The site currently centers on a small set of active projects that are already
-          documented here and will keep expanding as the site matures.
+          The current set is small on purpose: a few projects that are active, documented,
+          and still moving.
         </p>
       </div>
 
@@ -109,7 +115,7 @@ export default function NowPage() {
             <Link href="/projects">Project catalog</Link>
           </li>
           <li>
-            <Link href="/projects/personal-site">personal-site</Link>
+            <Link href="/projects/personal-site">Personal Site</Link>
           </li>
           <li>
             <Link href="/projects/hn-trend-tracker">HN Trend Tracker</Link>
@@ -118,7 +124,7 @@ export default function NowPage() {
             <Link href="/projects/repo-rails">repo-rails</Link>
           </li>
           <li>
-            <Link href="/writing">Writing log</Link>
+            <Link href="/writing">Notes</Link>
           </li>
         </ul>
       </div>

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
@@ -12,6 +13,22 @@ type ProjectDetailPageProps = {
 export async function generateStaticParams() {
   const slugs = await getProjectSlugs();
   return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: ProjectDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getProjectEntry(slug);
+
+  if (!project) {
+    return {
+      title: 'Project',
+    };
+  }
+
+  return {
+    title: project.title,
+    description: project.summary,
+  };
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
@@ -67,8 +84,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       {project.screenshots?.length ? (
         <section className="project-gallery stack-tight">
           <div className="stack-tight">
-            <p className="eyebrow">Visuals</p>
-            <h2>Screenshots and artifacts</h2>
+            <p className="eyebrow">Preview</p>
+            <h2>Current visual snapshot</h2>
           </div>
           <div className="project-screenshot-grid">
             {project.screenshots.map((screenshot) => (
