@@ -1,0 +1,70 @@
+name: Deployment Task
+description: Deployment-oriented work item with explicit operational safety requirements.
+title: "[deployment] "
+labels:
+  - deployment
+  - safety
+body:
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0
+        - P1
+        - P2
+        - P3
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Deployment task summary
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and target
+      description: Example: Synology, staging, production.
+    validations:
+      required: true
+  - type: textarea
+    id: preconditions
+    attributes:
+      label: Preconditions and approvals
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Explicit ask and deployment steps
+    validations:
+      required: true
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback or mitigation plan
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety constraints
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification expectations
+    validations:
+      required: true
+  - type: dropdown
+    id: human-review
+    attributes:
+      label: Human review required?
+      options:
+        - Yes
+        - No
+    validations:
+      required: true
