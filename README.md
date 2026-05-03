@@ -87,3 +87,10 @@ Start the production server after a build:
 ```powershell
 npm run start
 ```
+
+## Project Content
+
+Project entries live in `content/projects/` as Markdown files with frontmatter.
+
+Each project entry should define metadata such as title, slug, status, summary,
+stack, next milestone, and public-safe repository or docs URLs.
