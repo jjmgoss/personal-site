@@ -5,10 +5,12 @@ import matter from 'gray-matter';
 const rootDirectory = process.cwd();
 const projectsDirectory = path.join(rootDirectory, 'content', 'projects');
 const writingDirectory = path.join(rootDirectory, 'content', 'writing');
+const siteDirectory = path.join(rootDirectory, 'content', 'site');
 const publicDirectory = path.join(rootDirectory, 'public');
 
 const PROJECT_STATUSES = new Set(['idea', 'planning', 'active', 'paused', 'shipped', 'archived']);
 const ALLOWED_STATIC_ROUTES = new Set(['/', '/projects', '/writing', '/now']);
+const REQUIRED_SITE_FILES = ['site.json', 'home.md', 'projects.md', 'notes.md', 'now.md'];
 const markdownLinkPattern = /\[[^\]]+\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
 
 function isNonEmptyString(value) {
@@ -58,6 +60,15 @@ function validateOptionalUrlField(data, field, filePath, errors, scope) {
   }
 
   return value.trim();
+}
+
+function isValidExternalUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
 }
 
 function normalizeDate(value, filePath, errors) {
@@ -115,6 +126,46 @@ function extractInternalLinks(content) {
 
 function normalizeInternalPath(target) {
   return target.split('#')[0].split('?')[0] || '/';
+}
+
+function validateLinkTarget(target, sourceFile, fieldName, knownProjectSlugs, knownWritingSlugs, errors) {
+  if (!isNonEmptyString(target)) {
+    errors.push(`${sourceFile} -> "${fieldName}" must be a non-empty string.`);
+    return;
+  }
+
+  if (target.startsWith('/')) {
+    validateInternalLink(target, sourceFile, knownProjectSlugs, knownWritingSlugs, errors);
+    return;
+  }
+
+  if (!isValidExternalUrl(target)) {
+    errors.push(`${sourceFile} -> "${fieldName}" must be an internal route or a valid http(s) URL.`);
+  }
+}
+
+function requireObjectField(value, field, filePath, errors, scope) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    errors.push(`${scope}: ${filePath} -> "${field}" must be an object.`);
+    return undefined;
+  }
+
+  return value;
+}
+
+function requireObjectArrayField(data, field, filePath, errors, scope, { allowEmpty = false } = {}) {
+  const value = data[field];
+
+  if (!Array.isArray(value) || value.some((item) => !item || typeof item !== 'object' || Array.isArray(item))) {
+    errors.push(`${scope}: ${filePath} -> "${field}" must be a list of objects.`);
+    return [];
+  }
+
+  if (!allowEmpty && value.length === 0) {
+    errors.push(`${scope}: ${filePath} -> "${field}" must not be empty.`);
+  }
+
+  return value;
 }
 
 function validateInternalLink(target, sourceFile, knownProjectSlugs, knownWritingSlugs, errors) {
@@ -264,6 +315,164 @@ async function validateWritingFiles(projectSlugs, errors) {
   return entries;
 }
 
+async function validateSiteFiles(projectSlugs, writingSlugs, errors) {
+  for (const fileName of REQUIRED_SITE_FILES) {
+    const absolutePath = path.join(siteDirectory, fileName);
+    if (!(await fileExists(absolutePath))) {
+      errors.push(`site: required file missing -> content/site/${fileName}.`);
+    }
+  }
+
+  const siteJsonPath = path.join(siteDirectory, 'site.json');
+  if (await fileExists(siteJsonPath)) {
+    let siteConfig;
+    try {
+      siteConfig = JSON.parse(await readFile(siteJsonPath, 'utf8'));
+    } catch (error) {
+      errors.push(`site: content/site/site.json -> failed to parse JSON (${error.message}).`);
+      siteConfig = undefined;
+    }
+
+    if (siteConfig && typeof siteConfig === 'object' && !Array.isArray(siteConfig)) {
+      const filePath = 'content/site/site.json';
+      requireStringField(siteConfig, 'title', filePath, errors, 'site');
+      requireStringField(siteConfig, 'metadataDescription', filePath, errors, 'site');
+      requireStringField(siteConfig, 'headerKicker', filePath, errors, 'site');
+      requireStringField(siteConfig, 'headerSubtitle', filePath, errors, 'site');
+      requireStringField(siteConfig, 'footerTitle', filePath, errors, 'site');
+      requireStringField(siteConfig, 'footerSummary', filePath, errors, 'site');
+
+      const primaryNav = requireObjectArrayField(siteConfig, 'primaryNav', filePath, errors, 'site');
+      primaryNav.forEach((item, index) => {
+        requireStringField(item, 'label', filePath, errors, 'site');
+        const href = requireStringField(item, 'href', filePath, errors, 'site');
+        if (href) {
+          validateLinkTarget(href, filePath, `primaryNav[${index}].href`, projectSlugs, writingSlugs, errors);
+        }
+      });
+
+      const footerLinks = requireObjectArrayField(siteConfig, 'footerLinks', filePath, errors, 'site');
+      footerLinks.forEach((item, index) => {
+        requireStringField(item, 'label', filePath, errors, 'site');
+        const href = requireStringField(item, 'href', filePath, errors, 'site');
+        if (href) {
+          validateLinkTarget(href, filePath, `footerLinks[${index}].href`, projectSlugs, writingSlugs, errors);
+        }
+      });
+    } else if (siteConfig !== undefined) {
+      errors.push('site: content/site/site.json -> root value must be an object.');
+    }
+  }
+
+  const siteMarkdownFiles = ['home.md', 'projects.md', 'notes.md', 'now.md'];
+
+  for (const fileName of siteMarkdownFiles) {
+    const absolutePath = path.join(siteDirectory, fileName);
+    if (!(await fileExists(absolutePath))) {
+      continue;
+    }
+
+    const rawFile = await readFile(absolutePath, 'utf8');
+    const { data, content } = matter(rawFile);
+    const filePath = `content/site/${fileName}`;
+
+    if (fileName === 'home.md') {
+      const requiredFields = [
+        'eyebrow',
+        'headline',
+        'intro',
+        'primary_cta_label',
+        'primary_cta_href',
+        'secondary_cta_label',
+        'secondary_cta_href',
+        'support',
+        'projects_section_eyebrow',
+        'projects_section_title',
+        'projects_section_body',
+        'projects_section_link_label',
+        'projects_section_link_href',
+        'notes_section_eyebrow',
+        'notes_section_title',
+        'notes_section_body',
+        'latest_note_label',
+        'notes_section_link_label',
+        'notes_section_link_href',
+        'snapshot_link_label',
+        'snapshot_link_href',
+      ];
+
+      for (const field of requiredFields) {
+        requireStringField(data, field, fileName, errors, 'site');
+      }
+
+      for (const field of [
+        'primary_cta_href',
+        'secondary_cta_href',
+        'projects_section_link_href',
+        'notes_section_link_href',
+        'snapshot_link_href',
+      ]) {
+        const href = toTrimmedString(data[field]);
+        if (href) {
+          validateLinkTarget(href, filePath, field, projectSlugs, writingSlugs, errors);
+        }
+      }
+    }
+
+    if (fileName === 'projects.md' || fileName === 'notes.md') {
+      for (const field of ['metadata_title', 'metadata_description', 'eyebrow', 'headline', 'intro']) {
+        requireStringField(data, field, fileName, errors, 'site');
+      }
+    }
+
+    if (fileName === 'now.md') {
+      for (const field of [
+        'metadata_title',
+        'metadata_description',
+        'eyebrow',
+        'headline',
+        'intro',
+        'overview_title',
+        'overview_body',
+        'active_projects_title',
+        'active_projects_intro',
+        'explore_title',
+      ]) {
+        requireStringField(data, field, fileName, errors, 'site');
+      }
+
+      const statusSections = requireObjectArrayField(data, 'status_sections', fileName, errors, 'site');
+      statusSections.forEach((section, index) => {
+        requireStringField(section, 'title', fileName, errors, 'site');
+        requireStringField(section, 'body', fileName, errors, 'site');
+        requireObjectField(section, `status_sections[${index}]`, fileName, errors, 'site');
+      });
+
+      const activeProjects = requireObjectArrayField(data, 'active_projects', fileName, errors, 'site');
+      activeProjects.forEach((project, index) => {
+        const slug = requireStringField(project, 'slug', fileName, errors, 'site');
+        requireStringField(project, 'summary', fileName, errors, 'site');
+        if (slug && !projectSlugs.has(slug)) {
+          errors.push(`site: ${fileName} -> active_projects[${index}].slug "${slug}" does not exist in content/projects.`);
+        }
+      });
+
+      const exploreLinks = requireObjectArrayField(data, 'explore_links', fileName, errors, 'site');
+      exploreLinks.forEach((link, index) => {
+        requireStringField(link, 'label', fileName, errors, 'site');
+        const href = requireStringField(link, 'href', fileName, errors, 'site');
+        if (href) {
+          validateLinkTarget(href, filePath, `explore_links[${index}].href`, projectSlugs, writingSlugs, errors);
+        }
+      });
+    }
+
+    for (const target of extractInternalLinks(content)) {
+      validateInternalLink(target, filePath, projectSlugs, writingSlugs, errors);
+    }
+  }
+}
+
 async function main() {
   const errors = [];
 
@@ -271,6 +480,8 @@ async function main() {
   const projectSlugs = new Set(projects.map((project) => project.slug).filter(Boolean));
   const writingEntries = await validateWritingFiles(projectSlugs, errors);
   const writingSlugs = new Set(writingEntries.map((entry) => entry.slug).filter(Boolean));
+
+  await validateSiteFiles(projectSlugs, writingSlugs, errors);
 
   for (const project of projects) {
     for (const target of extractInternalLinks(project.content)) {
@@ -294,7 +505,7 @@ async function main() {
   }
 
   console.log(
-    `Content validation passed for ${projects.length} project file(s) and ${writingEntries.length} writing file(s).`
+    `Content validation passed for ${projects.length} project file(s), ${writingEntries.length} writing file(s), and ${REQUIRED_SITE_FILES.length} site file(s).`
   );
 }
 

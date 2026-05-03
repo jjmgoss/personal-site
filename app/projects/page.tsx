@@ -1,23 +1,25 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getProjectEntries } from '@/lib/content/projects';
+import { getProjectsPageContent } from '@/lib/content/site';
 
-export const metadata: Metadata = {
-  title: 'Projects',
-  description: 'Work-in-progress software, automation, and AI experiments by Jason Goss.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const pageContent = await getProjectsPageContent();
+
+  return {
+    title: pageContent.metadataTitle,
+    description: pageContent.metadataDescription,
+  };
+}
 
 export default async function ProjectsPage() {
-  const projects = await getProjectEntries();
+  const [projects, pageContent] = await Promise.all([getProjectEntries(), getProjectsPageContent()]);
 
   return (
     <section className="stack page-shell">
-      <p className="eyebrow">Projects</p>
-      <h1>Projects in progress</h1>
-      <p className="lede">
-        A working portfolio of tools, experiments, and systems that are getting more
-        useful over time. Some are rough. All of them are real.
-      </p>
+      <p className="eyebrow">{pageContent.eyebrow}</p>
+      <h1>{pageContent.headline}</h1>
+      <p className="lede">{pageContent.intro}</p>
       <ul className="project-list">
         {projects.map((project) => (
           <li className="project-card" key={project.slug}>

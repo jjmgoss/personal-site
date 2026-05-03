@@ -1,25 +1,27 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { getSiteConfig } from '@/lib/content/site';
 import './globals.css';
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Jason Goss',
-    template: '%s | Jason Goss',
-  },
-  description: 'Software projects, technical notes, and AI-assisted experiments by Jason Goss.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const siteConfig = await getSiteConfig();
 
-const navigationItems = [
-  { href: '/projects', label: 'Projects' },
-  { href: '/writing', label: 'Notes' },
-];
+  return {
+    title: {
+      default: siteConfig.title,
+      template: `%s | ${siteConfig.title}`,
+    },
+    description: siteConfig.metadataDescription,
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteConfig = await getSiteConfig();
+
   return (
     <html lang="en">
       <body>
@@ -27,18 +29,15 @@ export default function RootLayout({
           <div className="site-frame">
             <header className="site-header">
               <div className="site-brand">
-                <p className="site-kicker">Software projects and notes</p>
+                <p className="site-kicker">{siteConfig.headerKicker}</p>
                 <Link className="site-title" href="/">
-                  Jason Goss
+                  {siteConfig.title}
                 </Link>
-                <p className="site-subtitle">
-                  AI-assisted software experiments, project notes, and work in progress
-                  aimed at getting useful work done with less manual effort.
-                </p>
+                <p className="site-subtitle">{siteConfig.headerSubtitle}</p>
               </div>
               <nav aria-label="Primary">
                 <ul className="site-nav">
-                  {navigationItems.map((item) => (
+                  {siteConfig.primaryNav.map((item) => (
                     <li key={item.href}>
                       <Link className="site-nav-link" href={item.href}>
                         {item.label}
@@ -51,26 +50,21 @@ export default function RootLayout({
             <main className="site-main">{children}</main>
             <footer className="site-footer">
               <div>
-                <p className="site-footer-title">Jason Goss</p>
-                <p className="site-footer-copy">
-                  Projects, notes, and experiments in software, automation, and agent workflows.
-                </p>
+                <p className="site-footer-title">{siteConfig.footerTitle}</p>
+                <p className="site-footer-copy">{siteConfig.footerSummary}</p>
               </div>
               <ul className="site-footer-links">
-                <li>
-                  <Link href="/projects">Projects</Link>
-                </li>
-                <li>
-                  <Link href="/writing">Notes</Link>
-                </li>
-                <li>
-                  <Link href="/now">Now</Link>
-                </li>
-                <li>
-                  <a href="https://github.com/jjmgoss/personal-site" rel="noreferrer" target="_blank">
-                    Source
-                  </a>
-                </li>
+                {siteConfig.footerLinks.map((item) => (
+                  <li key={item.href}>
+                    {item.href.startsWith('/') ? (
+                      <Link href={item.href}>{item.label}</Link>
+                    ) : (
+                      <a href={item.href} rel="noreferrer" target="_blank">
+                        {item.label}
+                      </a>
+                    )}
+                  </li>
+                ))}
               </ul>
             </footer>
           </div>
