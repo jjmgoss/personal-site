@@ -164,6 +164,10 @@ Common public site copy now lives under `content/site/`.
 - Edit notes and writing entries in `content/writing/`.
 - Edit site-level copy such as the homepage, shared header/footer text, projects intro, notes intro, and `/now` page in `content/site/`.
 
+Theme behavior is handled in the app shell rather than content files.
+The site follows the browser's system color-scheme preference by default, and the shared header includes a manual theme control for `System`, `Light`, and `Dark`.
+Manual light or dark selections persist in local storage until `System` is selected again.
+
 After editing content, run:
 
 ```powershell
@@ -189,4 +193,4 @@ npx playwright install chromium
 ```
 
 These smoke tests are intended to catch route render failures, broken primary navigation,
-and broken image loading on public pages. They are not screenshot-diff or visual regression tests.
+broken image loading on public pages, and basic theme control regressions. They are not screenshot-diff or visual regression tests.

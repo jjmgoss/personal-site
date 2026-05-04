@@ -15,7 +15,6 @@ export default async function HomePage() {
   return (
     <div className="home-layout">
       <section className="stack hero-panel hero-panel-compact">
-        <p className="eyebrow">{homeContent.eyebrow}</p>
         <h1>{homeContent.headline}</h1>
         <p className="lede">{homeContent.intro}</p>
         <div className="hero-actions">

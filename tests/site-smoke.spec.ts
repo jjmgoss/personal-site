@@ -113,6 +113,41 @@ test.describe('public route smoke tests', () => {
     await expect(page.getByRole('heading', { level: 1, name: String(notesPageContent.headline) })).toBeVisible();
   });
 
+  test('theme control follows system preference and persists manual overrides', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto('/', { waitUntil: 'networkidle' });
+
+    const root = page.locator('html');
+    const themeSwitch = page.getByRole('switch', { name: /Theme/i });
+    const autoControl = page.getByText('Auto', { exact: true });
+
+    await expect(themeSwitch).toBeVisible();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'true');
+    await expect(autoControl).toBeVisible();
+    await expect(root).toHaveAttribute('data-theme-preference', 'system');
+    await expect(root).toHaveAttribute('data-theme', 'dark');
+
+    await themeSwitch.click();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'false');
+    await expect(root).toHaveAttribute('data-theme-preference', 'light');
+    await expect(root).toHaveAttribute('data-theme', 'light');
+
+    await page.reload({ waitUntil: 'networkidle' });
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'false');
+    await expect(root).toHaveAttribute('data-theme-preference', 'light');
+    await expect(root).toHaveAttribute('data-theme', 'light');
+
+    await themeSwitch.click();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'true');
+    await expect(root).toHaveAttribute('data-theme-preference', 'dark');
+    await expect(root).toHaveAttribute('data-theme', 'dark');
+
+    await page.getByRole('button', { name: 'Auto' }).click();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'true');
+    await expect(root).toHaveAttribute('data-theme-preference', 'system');
+    await expect(root).toHaveAttribute('data-theme', 'dark');
+  });
+
   test('projects index renders', async ({ page }) => {
     await assertRoute(
       page,

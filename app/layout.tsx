@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ThemeToggle, themeBootstrapScript } from '@/components/theme-toggle';
 import { getSiteConfig } from '@/lib/content/site';
 import './globals.css';
 
@@ -23,7 +24,10 @@ export default async function RootLayout({
   const siteConfig = await getSiteConfig();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+      </head>
       <body>
         <div className="site-shell">
           <div className="site-frame">
@@ -35,17 +39,20 @@ export default async function RootLayout({
                 </Link>
                 <p className="site-subtitle">{siteConfig.headerSubtitle}</p>
               </div>
-              <nav aria-label="Primary">
-                <ul className="site-nav">
-                  {siteConfig.primaryNav.map((item) => (
-                    <li key={item.href}>
-                      <Link className="site-nav-link" href={item.href}>
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+              <div className="site-header-actions">
+                <nav aria-label="Primary">
+                  <ul className="site-nav">
+                    {siteConfig.primaryNav.map((item) => (
+                      <li key={item.href}>
+                        <Link className="site-nav-link" href={item.href}>
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+                <ThemeToggle />
+              </div>
             </header>
             <main className="site-main">{children}</main>
             <footer className="site-footer">
