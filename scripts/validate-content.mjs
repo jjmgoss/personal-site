@@ -433,20 +433,30 @@ async function validateSiteFiles(projectSlugs, writingSlugs, errors) {
         'eyebrow',
         'headline',
         'intro',
-        'overview_title',
-        'overview_body',
+        'current_state_title',
+        'current_state_body',
+        'live_routes_title',
+        'live_routes_intro',
         'active_projects_title',
         'active_projects_intro',
-        'explore_title',
+        'recently_changed_title',
+        'next_likely_work_title',
+        'what_stays_private_title',
+        'what_stays_private_body',
+        'agent_maintenance_title',
       ]) {
         requireStringField(data, field, fileName, errors, 'site');
       }
 
-      const statusSections = requireObjectArrayField(data, 'status_sections', fileName, errors, 'site');
-      statusSections.forEach((section, index) => {
-        requireStringField(section, 'title', fileName, errors, 'site');
-        requireStringField(section, 'body', fileName, errors, 'site');
-        requireObjectField(section, `status_sections[${index}]`, fileName, errors, 'site');
+      const liveRoutes = requireObjectArrayField(data, 'live_routes', fileName, errors, 'site');
+      liveRoutes.forEach((route, index) => {
+        requireStringField(route, 'label', fileName, errors, 'site');
+        requireStringField(route, 'summary', fileName, errors, 'site');
+        const href = requireStringField(route, 'href', fileName, errors, 'site');
+        requireObjectField(route, `live_routes[${index}]`, fileName, errors, 'site');
+        if (href) {
+          validateLinkTarget(href, filePath, `live_routes[${index}].href`, projectSlugs, writingSlugs, errors);
+        }
       });
 
       const activeProjects = requireObjectArrayField(data, 'active_projects', fileName, errors, 'site');
@@ -458,14 +468,9 @@ async function validateSiteFiles(projectSlugs, writingSlugs, errors) {
         }
       });
 
-      const exploreLinks = requireObjectArrayField(data, 'explore_links', fileName, errors, 'site');
-      exploreLinks.forEach((link, index) => {
-        requireStringField(link, 'label', fileName, errors, 'site');
-        const href = requireStringField(link, 'href', fileName, errors, 'site');
-        if (href) {
-          validateLinkTarget(href, filePath, `explore_links[${index}].href`, projectSlugs, writingSlugs, errors);
-        }
-      });
+      requireStringArrayField(data, 'recently_changed', fileName, errors, 'site');
+      requireStringArrayField(data, 'next_likely_work', fileName, errors, 'site');
+      requireStringArrayField(data, 'agent_maintenance', fileName, errors, 'site');
     }
 
     for (const target of extractInternalLinks(content)) {

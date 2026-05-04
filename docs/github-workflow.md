@@ -45,6 +45,12 @@ Use `.github/PULL_REQUEST_TEMPLATE.md` to keep these sections consistent.
 - If a PR-caused check fails, fix it on the same branch and push again.
 - If a failure is unrelated or requires unavailable credentials, document that clearly in the PR.
 
+## Agent-Maintained Now Page
+
+When a PR materially changes public routes, project status, live URLs, deployment posture, the active project list, or the next likely priorities, update `content/site/now.md` as part of the same branch.
+
+Keep `/now` static, public-safe, and reviewable. Do not put secrets, private network details, local paths, or dashboard-style operational detail into that page.
+
 ## Review And Merge Posture
 
 - Do not merge without explicit human approval.
