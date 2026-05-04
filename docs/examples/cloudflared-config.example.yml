@@ -1,0 +1,10 @@
+# Example only. Placeholder values must be replaced outside the repository.
+# Do not commit real tunnel IDs, account IDs, hostnames, or private origin values.
+
+tunnel: <tunnel-name>
+credentials-file: /run/secrets/<tunnel-name>.json
+
+ingress:
+  - hostname: lab.jjmgoss.com
+    service: http://<origin-service>:<app-port>
+  - service: http_status:404

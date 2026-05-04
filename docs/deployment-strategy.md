@@ -139,6 +139,8 @@ The chosen first public routing model is Cloudflare Tunnel for `lab.jjmgoss.com`
 
 The current LAN-only Synology deployment remains the baseline until that later implementation work is explicitly approved.
 
+The current public-safe setup guide for that path is `docs/cloudflare-tunnel-setup.md`.
+
 Before enabling any future Cloudflare Tunnel route, use `docs/cloudflare-tunnel-rollback.md` as the planning reference for temporary disablement and full rollback back to LAN-only operation.
 
 ### Option 1: Cloudflare Tunnel
