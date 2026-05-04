@@ -33,6 +33,15 @@ For the normal local Windows checkout, run:
 cd C:\Users\jjmgo\coding_projects\personal-site
 git checkout main
 git pull --ff-only origin main
+```
+
+## Content Ownership
+
+- `content/projects/*.md`: Jason owns project body copy. Do not rewrite project descriptions unless an issue explicitly asks for project copy edits. Only change factual frontmatter when the issue explicitly requires it.
+- `content/writing/*.md`: writing posts must include `author`. If `author: Jason Goss` or `author` is missing, treat the body as protected. Agent-authored posts may be edited within issue scope.
+- `content/site/home.md`, `content/site/projects.md`, `content/site/notes.md`, and `content/site/site.json`: Jason-owned site copy. Do not rewrite for polish, refactor, testing, deployment, or infrastructure tasks.
+- `content/site/now.md`: agent-maintained and public-safe. Keep updates factual and small unless issue #45 or another explicit issue asks for a larger rewrite.
+- Human-written docs, code comments, and implementation choices outside the issue scope should also be preserved. Put non-essential rewrite suggestions in the PR body instead of applying them.
 
 ## Repository Boundaries
 

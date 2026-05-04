@@ -9,7 +9,7 @@ export default async function HomePage() {
     getWritingEntries(),
     getHomeContent(),
   ]);
-  const featuredProjects = projects.slice(0, 3);
+  const featuredProjects = projects.slice(0, 2);
   const latestNote = notes[0];
 
   return (
@@ -40,7 +40,6 @@ export default async function HomePage() {
                   <Link href={`/projects/${project.slug}`}>{project.title}</Link>
                   <span>{project.status}</span>
                 </div>
-                <p>{project.summary}</p>
               </li>
             ))}
           </ul>
@@ -59,7 +58,6 @@ export default async function HomePage() {
               <h3>
                 <Link href={`/writing/${latestNote.slug}`}>{latestNote.title}</Link>
               </h3>
-              <p>{latestNote.summary}</p>
             </div>
           ) : null}
           <Link className="subtle-link" href={homeContent.notesSection.notesLink.href}>

@@ -56,10 +56,7 @@ export default async function RootLayout({
             </header>
             <main className="site-main">{children}</main>
             <footer className="site-footer">
-              <div>
-                <p className="site-footer-title">{siteConfig.footerTitle}</p>
-                <p className="site-footer-copy">{siteConfig.footerSummary}</p>
-              </div>
+              <p className="site-footer-copy">{siteConfig.footerSummary}</p>
               <ul className="site-footer-links">
                 {siteConfig.footerLinks.map((item) => (
                   <li key={item.href}>

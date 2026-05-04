@@ -284,6 +284,7 @@ async function validateWritingFiles(projectSlugs, errors) {
 
     const title = requireStringField(data, 'title', fileName, errors, 'writing');
     const slug = requireStringField(data, 'slug', fileName, errors, 'writing');
+    const author = requireStringField(data, 'author', fileName, errors, 'writing');
     const date = normalizeDate(data.date, fileName, errors);
     const summary = requireStringField(data, 'summary', fileName, errors, 'writing');
     const tags = requireStringArrayField(data, 'tags', fileName, errors, 'writing');
@@ -303,7 +304,7 @@ async function validateWritingFiles(projectSlugs, errors) {
       slugCounts.set(slug, (slugCounts.get(slug) ?? 0) + 1);
     }
 
-    entries.push({ fileName, title, slug, date, summary, tags, relatedProjects, content });
+    entries.push({ fileName, title, slug, author, date, summary, tags, relatedProjects, content });
   }
 
   for (const [slug, count] of slugCounts.entries()) {

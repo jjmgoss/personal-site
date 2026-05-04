@@ -12,9 +12,9 @@ status_sections:
   - title: What exists now
     body: "Projects, notes, and the current snapshot are already live in the app. The structure stays deliberately lightweight so adding work does not turn into maintaining a separate publishing system."
   - title: Deployment status
-    body: "The site runs in a LAN-first self-hosted setup today. Public routing has been planned, but it is still intentionally off while the content and presentation get stronger."
+    body: "The site is publicly reachable now. The setup is still intentionally simple while the content and project pages get tighter."
   - title: What is still intentionally private
-    body: "Internet-facing deployment, infrastructure details, and other operational mechanics are not the story yet. The goal is to make the work clearer first, then make it public."
+    body: "Operational details and private infrastructure specifics are still not the story, so they stay out of the public copy unless they are needed to explain the work."
   - title: Next milestones
     body: "Next up is expanding project coverage, continuing to write down what is learned, and tightening the parts that make the work feel credible from the outside."
 active_projects_title: Active projects
