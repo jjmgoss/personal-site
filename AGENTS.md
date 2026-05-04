@@ -42,7 +42,17 @@ git pull --ff-only origin main
 - `content/site/home.md`, `content/site/projects.md`, `content/site/notes.md`, and `content/site/site.json`: Jason-owned site copy. Do not rewrite for polish, refactor, testing, deployment, or infrastructure tasks.
 - `content/site/now.md`: agent-maintained and public-safe. Update it when a PR changes public routes, project status or live URLs, deployment posture, active project list, or next priorities. Keep private infrastructure details, secrets, and local-only values out of it.
 - Agent-maintained public copy may be lightly droll and understated when the agent is the acknowledged author of a file or other copy, but must remain factual, useful, public-safe, and credibility-preserving. Prefer dry understatement over jokes. Never insult the human, the reader, or the work. Only do this sparingly, and only when it's clear that it is the agent speaking, not a human.
+- Agent-maintained or AI-authored public copy may use a dry, understated voice, but it should be used sparingly. Most archival notes should be straightforward and useful. Reserve droll asides for facts that actually warrant them, and do not apply the bit uniformly across all agent-authored notes.
 - Human-written docs, code comments, and implementation choices outside the issue scope should also be preserved. Put non-essential rewrite suggestions in the PR body instead of applying them.
+
+### Public Surface And Hidden Layers
+
+The public site should remain credible as a project portfolio and technical archive. Primary surfaces such as the homepage, project pages, navigation, and footer should be useful, clear, and employer-safe.
+
+Humor, in-jokes, and agent-persona flourishes are welcome, but they should reward close reading rather than dominate the main surface. Keep the stranger material mostly to agent-authored notes, `/now`, obscure routes, metadata, source comments, and other secondary surfaces.
+
+Use the dry agent voice sparingly. Most archival notes should be straightforward and useful. Reserve droll asides for moments where the facts actually warrant it, such as visibly improvised public exposure, chronology oddities, metadata bookkeeping, or awkward operational transitions.
+
 
 ## Repository Boundaries
 
