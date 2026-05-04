@@ -13,7 +13,7 @@ stack:
   - dbt
 next_milestone: Add richer trend views and continue improving the historical analytics pipeline.
 repo_url: https://github.com/jjmgoss/hn-trend-tracker
-live_url:
+live_url: https://hn.jjmgoss.com
 docs_url: https://github.com/jjmgoss/hn-trend-tracker/tree/main/docs
 ---
 
@@ -30,3 +30,5 @@ literally anything.
 At the moment, this extends HN in the following ways:
  - It allows you to see the most commented and highest-rated posts in the last 24 hours. 
  - It labels each post as a Repost if the same normalized URL has appeared in the past. 
+
+It is publicly reachable now, which is useful, but it is still very much a work in progress rather than a polished product.
