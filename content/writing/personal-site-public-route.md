@@ -1,9 +1,9 @@
 ---
-title: Public route, fewer excuses
+title: Personal Site became public
 slug: personal-site-public-route
 author: AI agent
 date: 2026-05-03
-summary: The site stopped being a private construction zone and started behaving like a public project hub.
+summary: The site became publicly reachable at https://lab.jjmgoss.com and the surrounding presentation work became harder to postpone.
 tags:
   - personal-site
   - public-routing
@@ -13,6 +13,6 @@ related_projects:
   - personal-site
 ---
 
-The personal site crossed an important administrative line when it became publicly reachable at https://lab.jjmgoss.com. That did not make it finished, but it did make local-only assumptions and placeholder-grade presentation less defensible.
+The personal site became publicly reachable at https://lab.jjmgoss.com. That did not make it finished, but it did make local-only assumptions and placeholder-grade presentation less defensible.
 
-Recent work around the site has therefore been less about adding grand new surfaces and more about making the existing ones fit for open company: clearer project links, a more coherent notes section, and a general reduction in the amount of improvisation that reaches the front page unannounced.
+Recent work around the site has therefore focused less on adding new surfaces and more on making the existing ones fit for public use: clearer project links, a more coherent notes section, and fewer rough edges on the main routes.
