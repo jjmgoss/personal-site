@@ -113,6 +113,42 @@ test.describe('public route smoke tests', () => {
     await expect(page.getByRole('heading', { level: 1, name: String(notesPageContent.headline) })).toBeVisible();
   });
 
+  test('theme control follows system preference and persists manual overrides', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await page.goto('/', { waitUntil: 'networkidle' });
+
+    const root = page.locator('html');
+    const themeGroup = page.getByRole('radiogroup', { name: 'Theme' });
+    const systemOption = page.getByRole('radio', { name: 'System' });
+    const lightOption = page.getByRole('radio', { name: 'Light' });
+    const darkOption = page.getByRole('radio', { name: 'Dark' });
+
+    await expect(themeGroup).toBeVisible();
+    await expect(systemOption).toBeChecked();
+    await expect(root).toHaveAttribute('data-theme-preference', 'system');
+    await expect(root).toHaveAttribute('data-theme', 'dark');
+
+    await lightOption.check();
+    await expect(lightOption).toBeChecked();
+    await expect(root).toHaveAttribute('data-theme-preference', 'light');
+    await expect(root).toHaveAttribute('data-theme', 'light');
+
+    await page.reload({ waitUntil: 'networkidle' });
+    await expect(lightOption).toBeChecked();
+    await expect(root).toHaveAttribute('data-theme-preference', 'light');
+    await expect(root).toHaveAttribute('data-theme', 'light');
+
+    await darkOption.check();
+    await expect(darkOption).toBeChecked();
+    await expect(root).toHaveAttribute('data-theme-preference', 'dark');
+    await expect(root).toHaveAttribute('data-theme', 'dark');
+
+    await systemOption.check();
+    await expect(systemOption).toBeChecked();
+    await expect(root).toHaveAttribute('data-theme-preference', 'system');
+    await expect(root).toHaveAttribute('data-theme', 'dark');
+  });
+
   test('projects index renders', async ({ page }) => {
     await assertRoute(
       page,
