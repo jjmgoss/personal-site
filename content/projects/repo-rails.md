@@ -15,16 +15,25 @@ live_url:
 docs_url: https://github.com/jjmgoss/repo-rails/tree/main/docs
 ---
 
-`repo-rails` packages the scaffolding, checks, and safety defaults needed to set
-up repositories for coding-agent workflows without relying on ad hoc manual
-steps.
+A standardized way of initializing a GitHub repo to support a new project, in a way that's friendly to
+the way I've landed on working with agents.
 
-The toolkit is designed around issue-driven development, setup branches, pull
-requests, and explicit verification. It helps create a consistent repository
-surface for instructions, templates, managed workflow files, and compliance
-checks while keeping target repositories in control of their own project-specific
-context.
+While getting the machines to code up hn-trends-tracker, it became clear that the only easy way
+to orchestrate agents is to instruct them to do things in a highly structured way. Unfortunately for
+them, I don't like doing things in a highly structured way, so I get another agent to intermediate. 
 
-The current implementation centers on a Python CLI, with reusable profiles and
-templates that support agent-friendly repository setup for projects like this
-one.
+I landed on telling them what to do using a GitHub-centric workflow that revolves around
+trying to keep some agent with high-level context doing most of the paperwork, passing off tasks to agents in
+Codex or the Copilot chat interface in VS Code, then getting my high-level confidante agent to review their code. 
+
+The workflow goes like this
+- I talk to an agent in a chat window. They pretend to understand my motivation, and will spit out very detailed
+prompts to the implementer agent, telling them what to do, in the form of a Github Issue.
+- I ask the confidante agent for a prompt telling the implementer agent where to find the issue, and instructions
+for implementing the issue.
+- The implementer agent pushes up a PR on a new branch of the repo, following some guidelines around PR formatting,
+describing what it's done.
+- The confidante agent reads the PR, reviews, and will tell me whether i should merge it.
+
+This repo-rails project is all in service of getting the initial repo set up to support this workflow when I set
+up a new project.
