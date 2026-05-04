@@ -33,6 +33,15 @@ For the normal local Windows checkout, run:
 cd C:\Users\jjmgo\coding_projects\personal-site
 git checkout main
 git pull --ff-only origin main
+```
+
+## Preserve Human-Written Material
+
+Treat human-authored copy and code as intentional unless the issue explicitly asks for rewriting.
+
+Do not rewrite, paraphrase, professionalize, simplify, or replace human-written material in `content/site/*`, `content/projects/*`, `content/writing/*`, human-written docs, or human-written code comments/implementation choices unless it is directly in scope and explicitly requested.
+
+For polish or refactor tasks, preserve the existing material and put non-essential rewrite suggestions in the PR body instead of applying them.
 
 ## Repository Boundaries
 
