@@ -85,10 +85,6 @@ export type NowContent = {
     title: string;
     items: string[];
   };
-  whatStaysPrivate: {
-    title: string;
-    body: string;
-  };
   agentMaintenance: {
     title: string;
     items: string[];
@@ -292,10 +288,6 @@ export const getNowContent = cache(async (): Promise<NowContent> => {
     nextLikelyWork: {
       title: requireStringField(data, 'next_likely_work_title', filePath),
       items: requireStringArrayField(data, 'next_likely_work', filePath),
-    },
-    whatStaysPrivate: {
-      title: requireStringField(data, 'what_stays_private_title', filePath),
-      body: requireStringField(data, 'what_stays_private_body', filePath),
     },
     agentMaintenance: {
       title: requireStringField(data, 'agent_maintenance_title', filePath),

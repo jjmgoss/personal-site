@@ -98,11 +98,6 @@ export default async function NowPage() {
       </ul>
 
       <div className="stack-tight">
-        <h2>{pageContent.whatStaysPrivate.title}</h2>
-        <p className="lede">{pageContent.whatStaysPrivate.body}</p>
-      </div>
-
-      <div className="stack-tight">
         <h2>{pageContent.agentMaintenance.title}</h2>
       </div>
 
