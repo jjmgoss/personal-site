@@ -13,7 +13,7 @@ projects_section_body: These are all in various states of disarray. That is the 
 projects_section_link_label: Browse the full project list
 projects_section_link_href: /projects
 notes_section_eyebrow: Notes
-notes_section_title: Notes: What was I thinking?
+notes_section_title: "Notes: What was I thinking?"
 notes_section_body: Things I noticed while trying to get the machines to do something useful.
 latest_note_label: Latest note
 notes_section_link_label: Read all notes

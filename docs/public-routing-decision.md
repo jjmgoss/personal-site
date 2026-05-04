@@ -233,6 +233,8 @@ http://<synology-lan-host>:<configured-lan-port>
 
 The first public routing model should be easy to disable.
 
+The current rollback planning guide is `docs/cloudflare-tunnel-rollback.md`.
+
 Desired rollback posture:
 
 - disable the public tunnel route
