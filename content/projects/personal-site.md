@@ -14,17 +14,9 @@ live_url:
 docs_url: https://github.com/jjmgoss/personal-site/tree/main/docs
 ---
 
-`personal-site` is the portfolio and notes hub for the work in this workspace.
+This is what you're looking at right now.
 
-The goal is straightforward: keep projects, notes, and delivery experiments in one
-place that is easy to update and easy to understand from the outside.
+Simple front end, basically no backend, description of some of my github repos.
 
-The current scope is still intentionally narrow:
-
-- a short professional landing page
-- a project catalog with honest work-in-progress status
-- notes on what is being built and what is being learned
-- deployment and process documentation when it helps explain the work
-
-The current milestone is to make the public presentation strong enough to share
-without pretending the projects are more polished than they are.
+I don't really know how any of it works, other than knowing i'm supposed to be filling out this section
+of the markdown files to make the text appear on the screen.

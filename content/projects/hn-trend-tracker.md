@@ -17,18 +17,12 @@ live_url:
 docs_url: https://github.com/jjmgoss/hn-trend-tracker/tree/main/docs
 ---
 
-`hn-trend-tracker` is a Hacker News data project focused on collecting useful
-story history and turning it into a read-only analysis surface.
 
-Today the project combines a Python backend and ingestion pipeline with a
-Next.js frontend. It stores the latest known state for items and users, appends
-historical story observations during refresh cycles, and uses supporting docs and
-analytics models to make the system easier to extend.
+This was me flailing around for an idea, any idea, that could be worth a Saturday. Staring at Hacker News posts,
+desperately inviting inspiration, it struck me: I could be a copycat. Easy enough. 
 
-The project is intentionally practical rather than overbuilt. It is aimed at
-capturing enough structured data to answer questions about story momentum,
-comment growth, repost patterns, and broader trend behavior without adding
-unnecessary product complexity.
-
-No public live deployment is linked here yet because this site should only point
-to real public URLs when they actually exist.
+Hacker News provides a publicly accessible API with all their posts, and they invite the general public to trawl
+through the contents of their entire history. So, I can just set up a little service to pull from their API, fill
+in a database with all the posts, comments, etc that have ever been on the site, and then use that data for my own
+devices. My own devices are boring and derivative, but at least I could exercise instructing agents to do
+literally anything. 

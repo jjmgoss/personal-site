@@ -1,20 +1,20 @@
 ---
 eyebrow: Jason Goss
-headline: How to get the machine to do work for me.
-intro: I build software, automation, and AI-assisted workflows that turn rough ideas into useful tools. This is the portfolio and notebook for the experiments, systems, and work-in-progress projects worth sharing.
+headline: Making the machines work
+intro: I'm seeing what I can do with our newfound abilities to give machines vague instructions, and have them magically intuit our intent
 primary_cta_label: View projects
 primary_cta_href: /projects
 secondary_cta_label: Read notes
 secondary_cta_href: /writing
-support: The through-line is practical. Use software systems, agent workflows, and AI tools to move more work with less manual drag.
+support: I hope these are actually useful, but they really only have to be a fun thing to have built
 projects_section_eyebrow: Selected work
-projects_section_title: Projects first, with the rough edges left visible.
-projects_section_body: Most of the work here is still in progress. That is the point. The site shows what is actually being built, what is still getting sharper, and what seems worth continuing.
+projects_section_title: "Projects: Expect rough edges"
+projects_section_body: These are all in various states of disarray. That is the point.
 projects_section_link_label: Browse the full project list
 projects_section_link_href: /projects
 notes_section_eyebrow: Notes
-notes_section_title: Notes on what holds up, what breaks, and what changes next.
-notes_section_body: The notes section is where decisions, experiments, and implementation details get written down before they disappear into a commit history.
+notes_section_title: What was I thinking??
+notes_section_body: When I look back on this, maybe these notes will still make sense.
 latest_note_label: Latest note
 notes_section_link_label: Read all notes
 notes_section_link_href: /writing

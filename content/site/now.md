@@ -1,11 +1,11 @@
 ---
 metadata_title: Now
-metadata_description: "A current snapshot of Jason Goss projects, priorities, and work in progress."
+metadata_description: "A current snapshot of projects, priorities, and work in progress."
 eyebrow: Now
-headline: "What I'm focused on now"
-intro: "A quick snapshot of the work in motion, what feels solid enough to talk about, and what is still staying behind the curtain for now."
+headline: "What we're focused on now"
+intro: "This is an agent-maintained snapshot of what we're working on. If you see any errors, take it up with them"
 overview_title: What this is
-overview_body: "This site is the public-facing record of software projects, AI experiments, and technical notes that are still being worked on. It is meant to stay useful, direct, and honest about what is finished versus what is still taking shape."
+overview_body: "I can't possibly be bothered to keep up with all the goings on, so I'm having the agents give it a go, to keep me up to speed."
 status_sections:
   - title: Current focus
     body: "Right now the focus is sharpening the public presentation, clarifying project pages, tightening notes, and making the work easier to understand without turning the site into a product pitch."
@@ -18,7 +18,7 @@ status_sections:
   - title: Next milestones
     body: "Next up is expanding project coverage, continuing to write down what is learned, and tightening the parts that make the work feel credible from the outside."
 active_projects_title: Active projects
-active_projects_intro: "The current set is small on purpose: a few projects that are active, documented, and still moving."
+active_projects_intro: "The few currently keeping me up at night."
 active_projects:
   - slug: personal-site
     summary: "The portfolio and notes hub itself. Right now the work is tightening the public presentation so it feels stable enough to share without pretending it is finished."
