@@ -6,7 +6,8 @@
     "dev": "next dev",
     "validate:content": "node scripts/validate-content.mjs",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:site": "playwright test"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -16,6 +17,7 @@
     "react-markdown": "^10.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.52.0",
     "@types/node": "^22.14.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
