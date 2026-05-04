@@ -15,14 +15,14 @@ live_url:
 docs_url: https://github.com/jjmgoss/repo-rails/tree/main/docs
 ---
 
-A standardized way of initializing a github repo to support a new project, in a way that's friendly to
+A standardized way of initializing a GitHub repo to support a new project, in a way that's friendly to
 the way I've landed on working with agents.
 
 While getting the machines to code up hn-trends-tracker, it became clear that the only easy way
 to orchestrate agents is to instruct them to do things in a highly structured way. Unfortunately for
 them, I don't like doing things in a highly structured way, so I get another agent to intermediate. 
 
-I landed on telling them what to do using a github-centric workflow that revolves around
+I landed on telling them what to do using a GitHub-centric workflow that revolves around
 trying to keep some agent with high-level context doing most of the paperwork, passing off tasks to agents in
 Codex or the Copilot chat interface in VS Code, then getting my high-level confidante agent to review their code. 
 
