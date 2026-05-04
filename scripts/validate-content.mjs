@@ -441,8 +441,6 @@ async function validateSiteFiles(projectSlugs, writingSlugs, errors) {
         'active_projects_intro',
         'recently_changed_title',
         'next_likely_work_title',
-        'what_stays_private_title',
-        'what_stays_private_body',
         'agent_maintenance_title',
       ]) {
         requireStringField(data, field, fileName, errors, 'site');

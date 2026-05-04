@@ -37,8 +37,6 @@ next_likely_work:
   - "Keep tightening public polish and project-page clarity."
   - "Continue deployment hygiene and public-safe documentation around the live setup."
   - "Expand project coverage and make the catalog more useful without turning it into a product pitch or a filing cabinet."
-what_stays_private_title: What stays private
-what_stays_private_body: "Secrets, local network details, private hostnames, filesystem paths, and the less charming operational mechanics stay out of public copy unless a public-safe explanation genuinely requires them."
 agent_maintenance_title: Agent maintenance notes
 agent_maintenance:
   - "Update this page when a PR changes public routes, live URLs, project status, deployment posture, active projects, or next priorities."
