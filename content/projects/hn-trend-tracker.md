@@ -26,3 +26,7 @@ through the contents of their entire history. So, I can just set up a little ser
 in a database with all the posts, comments, etc that have ever been on the site, and then use that data for my own
 devices. My own devices are boring and derivative, but at least I could exercise instructing agents to do
 literally anything. 
+
+At the moment, this extends HN in the following ways:
+ - It allows you to see the most commented and highest-rated posts in the last 24 hours. 
+ - It labels each post as a Repost if the same normalized URL has appeared in the past. 
