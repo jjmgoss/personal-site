@@ -8,12 +8,6 @@ type ResolvedTheme = Exclude<ThemePreference, 'system'>;
 const THEME_STORAGE_KEY = 'theme-preference';
 const THEME_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 
-const themeOptions: Array<{ value: ThemePreference; label: string }> = [
-  { value: 'system', label: 'System' },
-  { value: 'light', label: 'Light' },
-  { value: 'dark', label: 'Dark' },
-];
-
 function resolveTheme(preference: ThemePreference, matchesDarkMode: boolean): ResolvedTheme {
   if (preference === 'system') {
     return matchesDarkMode ? 'dark' : 'light';
@@ -69,15 +63,19 @@ export const themeBootstrapScript = `(() => {
 
 export function ThemeToggle() {
   const [preference, setPreference] = useState<ThemePreference>('system');
+  const [matchesDarkMode, setMatchesDarkMode] = useState(false);
 
   useEffect(() => {
     const mediaQueryList = window.matchMedia(THEME_MEDIA_QUERY);
     const currentPreference = readStoredPreference();
 
     setPreference(currentPreference);
+    setMatchesDarkMode(mediaQueryList.matches);
     applyTheme(currentPreference, mediaQueryList.matches);
 
     const handleSystemThemeChange = (event: MediaQueryListEvent) => {
+      setMatchesDarkMode(event.matches);
+
       if (readStoredPreference() === 'system') {
         applyTheme('system', event.matches);
         setPreference('system');
@@ -95,6 +93,7 @@ export function ThemeToggle() {
     const mediaQueryList = window.matchMedia(THEME_MEDIA_QUERY);
 
     setPreference(nextPreference);
+    setMatchesDarkMode(mediaQueryList.matches);
 
     if (nextPreference === 'system') {
       window.localStorage.removeItem(THEME_STORAGE_KEY);
@@ -105,27 +104,38 @@ export function ThemeToggle() {
     applyTheme(nextPreference, mediaQueryList.matches);
   }
 
+  const resolvedTheme = resolveTheme(preference, matchesDarkMode);
+  const followsSystem = preference === 'system';
+  const nextPreference = resolvedTheme === 'dark' ? 'light' : 'dark';
+  const switchLabel = followsSystem
+    ? `Theme follows system. Switch to ${nextPreference} mode.`
+    : `Theme set to ${resolvedTheme}. Switch to ${nextPreference} mode.`;
+
   return (
     <div className="theme-control">
-      <p className="theme-control-label">Theme</p>
-      <div aria-label="Theme" className="theme-switcher" role="radiogroup">
-        {themeOptions.map((option) => {
-          const isActive = preference === option.value;
-
-          return (
-            <label className="theme-option" data-active={isActive} key={option.value}>
-              <input
-                checked={isActive}
-                name="theme-preference"
-                onChange={() => updatePreference(option.value)}
-                type="radio"
-                value={option.value}
-              />
-              <span>{option.label}</span>
-            </label>
-          );
-        })}
-      </div>
+      <span className="theme-control-label">Theme</span>
+      <button
+        aria-checked={resolvedTheme === 'dark'}
+        aria-describedby="theme-status"
+        aria-label={switchLabel}
+        className="theme-switch"
+        onClick={() => updatePreference(nextPreference)}
+        role="switch"
+        type="button"
+      >
+        <span className="theme-switch-track">
+          <span className="theme-switch-thumb" />
+        </span>
+      </button>
+      {followsSystem ? (
+        <span className="theme-status" id="theme-status">
+          Auto
+        </span>
+      ) : (
+        <button className="theme-reset" id="theme-status" onClick={() => updatePreference('system')} type="button">
+          Auto
+        </button>
+      )}
     </div>
   );
 }

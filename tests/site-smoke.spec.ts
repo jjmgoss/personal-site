@@ -118,33 +118,32 @@ test.describe('public route smoke tests', () => {
     await page.goto('/', { waitUntil: 'networkidle' });
 
     const root = page.locator('html');
-    const themeGroup = page.getByRole('radiogroup', { name: 'Theme' });
-    const systemOption = page.getByRole('radio', { name: 'System' });
-    const lightOption = page.getByRole('radio', { name: 'Light' });
-    const darkOption = page.getByRole('radio', { name: 'Dark' });
+    const themeSwitch = page.getByRole('switch', { name: /Theme/i });
+    const autoControl = page.getByText('Auto', { exact: true });
 
-    await expect(themeGroup).toBeVisible();
-    await expect(systemOption).toBeChecked();
+    await expect(themeSwitch).toBeVisible();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'true');
+    await expect(autoControl).toBeVisible();
     await expect(root).toHaveAttribute('data-theme-preference', 'system');
     await expect(root).toHaveAttribute('data-theme', 'dark');
 
-    await lightOption.check();
-    await expect(lightOption).toBeChecked();
+    await themeSwitch.click();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'false');
     await expect(root).toHaveAttribute('data-theme-preference', 'light');
     await expect(root).toHaveAttribute('data-theme', 'light');
 
     await page.reload({ waitUntil: 'networkidle' });
-    await expect(lightOption).toBeChecked();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'false');
     await expect(root).toHaveAttribute('data-theme-preference', 'light');
     await expect(root).toHaveAttribute('data-theme', 'light');
 
-    await darkOption.check();
-    await expect(darkOption).toBeChecked();
+    await themeSwitch.click();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'true');
     await expect(root).toHaveAttribute('data-theme-preference', 'dark');
     await expect(root).toHaveAttribute('data-theme', 'dark');
 
-    await systemOption.check();
-    await expect(systemOption).toBeChecked();
+    await page.getByRole('button', { name: 'Auto' }).click();
+    await expect(themeSwitch).toHaveAttribute('aria-checked', 'true');
     await expect(root).toHaveAttribute('data-theme-preference', 'system');
     await expect(root).toHaveAttribute('data-theme', 'dark');
   });
