@@ -88,6 +88,18 @@ Validate content frontmatter, screenshot references, and simple internal content
 npm run validate:content
 ```
 
+Run the public-route smoke tests:
+
+```powershell
+npm run test:site
+```
+
+For a line-by-line test report:
+
+```powershell
+npm run test:site -- --reporter=list
+```
+
 Start the production server after a build:
 
 ```powershell
@@ -158,3 +170,23 @@ After editing content, run:
 npm run validate:content
 npm run build
 ```
+
+## Route Smoke Tests
+
+The repository includes lightweight Playwright smoke tests for the main public routes.
+
+The tests use the built app with Playwright `webServer`, so the normal local flow is:
+
+```powershell
+npm run build
+npm run test:site
+```
+
+If Playwright browsers are not installed yet on the local machine, install Chromium once with:
+
+```powershell
+npx playwright install chromium
+```
+
+These smoke tests are intended to catch route render failures, broken primary navigation,
+and broken image loading on public pages. They are not screenshot-diff or visual regression tests.
