@@ -3,7 +3,7 @@ metadata_title: Now
 metadata_description: "A current snapshot of projects, priorities, and work in progress."
 eyebrow: Now
 headline: "What we're focused on now"
-intro: "This is an agent-maintained snapshot of what we're working on. If you see any errors, take it up with them"
+intro: "This is an agent-maintained snapshot of what we're working on."
 overview_title: What this is
 overview_body: "I can't possibly be bothered to keep up with all the goings on, so I'm having the agents give it a go, to keep me up to speed."
 status_sections:

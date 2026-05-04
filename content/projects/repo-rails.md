@@ -24,12 +24,12 @@ them, I don't like doing things in a highly structured way, so I get another age
 
 I landed on telling them what to do using a github-centric workflow that revolves around
 trying to keep some agent with high-level context doing most of the paperwork, passing off tasks to agents in
-Codex or the Copilot chat interface in VS Code, then getting my co-conspirator to review their code. 
+Codex or the Copilot chat interface in VS Code, then getting my high-level confidante agent to review their code. 
 
 The workflow goes like this
 - I talk to an agent in a chat window. They pretend to understand my motivation, and will spit out very detailed
 prompts to the implementer agent, telling them what to do, in the form of a Github Issue.
-- I get the confidante agent to give me a prompt telling the implementer agent where to find the issue, and instructions
+- I ask the confidante agent for a prompt telling the implementer agent where to find the issue, and instructions
 for implementing the issue.
 - The implementer agent pushes up a PR on a new branch of the repo, following some guidelines around PR formatting,
 describing what it's done.

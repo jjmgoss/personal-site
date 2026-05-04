@@ -18,7 +18,7 @@ docs_url: https://github.com/jjmgoss/autonomous-product-development/tree/main/do
 
 While developing HN Trends Tracker, I had it in the back of my head that this was a toy, 
 this likely wouldn't go anywhere, almost certainly wouldn't be monetizable, and HN might not even
-take kindly to me harvesting their data for this, and might want me to take it down.
+take kindly to me using their data for this, and might want me to take it down.
 
 So what else could I try to do? I had no idea. But I did have a GPU that could fit a local LLM on it,
 and maybe I could turn to it for cheaper advice than I could get from one of the big names.

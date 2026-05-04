@@ -17,6 +17,3 @@ docs_url: https://github.com/jjmgoss/personal-site/tree/main/docs
 This is what you're looking at right now.
 
 Simple front end, basically no backend, description of some of my github repos.
-
-I don't really know how much of it works yet, other than knowing I'm supposed to be filling out this section
-of the markdown files to make the text appear on the screen. Markdown in, site copy out.
