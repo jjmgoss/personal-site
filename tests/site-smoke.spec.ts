@@ -30,6 +30,7 @@ const projectsPageContent = readFrontmatter('content/site/projects.md');
 const notesPageContent = readFrontmatter('content/site/notes.md');
 const nowPageContent = readFrontmatter('content/site/now.md');
 const personalSiteProject = readFrontmatter('content/projects/personal-site.md');
+const hnTrendTrackerProject = readFrontmatter('content/projects/hn-trend-tracker.md');
 const autonomousProductDevelopmentPath = path.join(
   repoRoot,
   'content/projects/autonomous-product-development.md'
@@ -167,6 +168,21 @@ test.describe('public route smoke tests', () => {
 
     await expect(page.locator('body')).toContainText(String(personalSiteProject.summary));
     await expect(page.locator('text=Current visual snapshot')).toHaveCount(0);
+  });
+
+  test('hn trend tracker project page renders the live public link', async ({ page }) => {
+    await assertRoute(
+      page,
+      '/projects/hn-trend-tracker',
+      String(hnTrendTrackerProject.title),
+      String(hnTrendTrackerProject.title)
+    );
+
+    await expect(page.getByRole('link', { name: 'Live' })).toHaveAttribute(
+      'href',
+      String(hnTrendTrackerProject.live_url)
+    );
+    await expect(page.locator('body')).toContainText(String(hnTrendTrackerProject.summary));
   });
 
   test('writing index renders', async ({ page }) => {

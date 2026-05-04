@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clean": "node scripts/clean-next.mjs",
     "dev": "next dev",
     "validate:content": "node scripts/validate-content.mjs",
+    "build:clean": "npm run clean && npm run build",
     "build": "next build",
     "start": "next start",
     "test:site": "playwright test"

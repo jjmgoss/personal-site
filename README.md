@@ -82,6 +82,12 @@ Create a production build:
 npm run build
 ```
 
+If local Next output gets stale and `npm run start` or `npm run test:site` fails with missing generated chunks under `.next`, run a clean rebuild:
+
+```powershell
+npm run build:clean
+```
+
 Validate content frontmatter, screenshot references, and simple internal content links:
 
 ```powershell
@@ -190,6 +196,14 @@ npm run build
 npm run test:site
 ```
 
+If the production server fails because local `.next` output is stale or corrupted, use:
+
+```powershell
+npm run clean
+npm run build
+npm run test:site
+```
+
 If Playwright browsers are not installed yet on the local machine, install Chromium once with:
 
 ```powershell
@@ -198,3 +212,5 @@ npx playwright install chromium
 
 These smoke tests are intended to catch route render failures, broken primary navigation,
 broken image loading on public pages, and basic theme control regressions. They are not screenshot-diff or visual regression tests.
+
+The npm major-version notice that may appear during local or Docker builds is informational. This repo does not currently require a global npm upgrade just to suppress that notice.
