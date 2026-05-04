@@ -23,21 +23,30 @@ export default async function NowPage() {
       <p className="lede">{pageContent.intro}</p>
 
       <div className="stack-tight">
-        <h2>{pageContent.overview.title}</h2>
-        <p className="lede">{pageContent.overview.body}</p>
+        <h2>{pageContent.currentState.title}</h2>
+        <p className="lede">{pageContent.currentState.body}</p>
       </div>
 
-      <div className="project-list">
-        {pageContent.statusSections.map((section) => (
-          <article className="project-card" key={section.title}>
-            <div className="stack-tight">
-              <p className="status-pill">Current</p>
-              <h2>{section.title}</h2>
-            </div>
-            <p>{section.body}</p>
-          </article>
-        ))}
+      <div className="stack-tight">
+        <h2>{pageContent.liveRoutes.title}</h2>
+        <p className="lede">{pageContent.liveRoutes.intro}</p>
       </div>
+
+      <ul className="project-list">
+        {pageContent.liveRoutes.items.map((route) => (
+          <li className="project-card" key={route.href}>
+            <div className="stack-tight">
+              <p className="status-pill">Live</p>
+              <h2>
+                <a href={route.href} rel="noreferrer" target="_blank">
+                  {route.label}
+                </a>
+              </h2>
+            </div>
+            <p>{route.summary}</p>
+          </li>
+        ))}
+      </ul>
 
       <div className="stack-tight">
         <h2>{pageContent.activeProjects.title}</h2>
@@ -65,15 +74,45 @@ export default async function NowPage() {
       </ul>
 
       <div className="stack-tight">
-        <h2>{pageContent.explore.title}</h2>
-        <ul className="project-links">
-          {pageContent.explore.links.map((link) => (
-            <li key={link.href}>
-              <Link href={link.href}>{link.label}</Link>
-            </li>
-          ))}
-        </ul>
+        <h2>{pageContent.recentlyChanged.title}</h2>
       </div>
+
+      <ul className="project-list">
+        {pageContent.recentlyChanged.items.map((item) => (
+          <li className="project-card" key={item}>
+            <p>{item}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div className="stack-tight">
+        <h2>{pageContent.nextLikelyWork.title}</h2>
+      </div>
+
+      <ul className="project-list">
+        {pageContent.nextLikelyWork.items.map((item) => (
+          <li className="project-card" key={item}>
+            <p>{item}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div className="stack-tight">
+        <h2>{pageContent.whatStaysPrivate.title}</h2>
+        <p className="lede">{pageContent.whatStaysPrivate.body}</p>
+      </div>
+
+      <div className="stack-tight">
+        <h2>{pageContent.agentMaintenance.title}</h2>
+      </div>
+
+      <ul className="project-list">
+        {pageContent.agentMaintenance.items.map((item) => (
+          <li className="project-card" key={item}>
+            <p>{item}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

@@ -56,14 +56,19 @@ export type NowContent = {
   eyebrow: string;
   headline: string;
   intro: string;
-  overview: {
+  currentState: {
     title: string;
     body: string;
   };
-  statusSections: Array<{
+  liveRoutes: {
     title: string;
-    body: string;
-  }>;
+    intro: string;
+    items: Array<{
+      label: string;
+      href: string;
+      summary: string;
+    }>;
+  };
   activeProjects: {
     title: string;
     intro: string;
@@ -72,9 +77,21 @@ export type NowContent = {
       summary: string;
     }>;
   };
-  explore: {
+  recentlyChanged: {
     title: string;
-    links: SiteLink[];
+    items: string[];
+  };
+  nextLikelyWork: {
+    title: string;
+    items: string[];
+  };
+  whatStaysPrivate: {
+    title: string;
+    body: string;
+  };
+  agentMaintenance: {
+    title: string;
+    items: string[];
   };
 };
 
@@ -92,6 +109,21 @@ function requireStringField(data: Record<string, unknown>, field: string, filePa
   }
 
   return value.trim();
+}
+
+function requireStringArrayField(data: Record<string, unknown>, field: string, filePath: string): string[] {
+  const value = data[field];
+
+  if (!Array.isArray(value) || value.some((item) => !isNonEmptyString(item))) {
+    throw new Error(`Invalid site content in ${filePath}: "${field}" must be a non-empty list of strings.`);
+  }
+
+  const trimmed = value.map((item) => item.trim());
+  if (trimmed.length === 0) {
+    throw new Error(`Invalid site content in ${filePath}: "${field}" must be a non-empty list of strings.`);
+  }
+
+  return trimmed;
 }
 
 function parseLink(value: unknown, filePath: string, field: string): SiteLink {
@@ -232,14 +264,19 @@ export const getNowContent = cache(async (): Promise<NowContent> => {
     eyebrow: requireStringField(data, 'eyebrow', filePath),
     headline: requireStringField(data, 'headline', filePath),
     intro: requireStringField(data, 'intro', filePath),
-    overview: {
-      title: requireStringField(data, 'overview_title', filePath),
-      body: requireStringField(data, 'overview_body', filePath),
+    currentState: {
+      title: requireStringField(data, 'current_state_title', filePath),
+      body: requireStringField(data, 'current_state_body', filePath),
     },
-    statusSections: parseStringArrayObjects(data.status_sections, filePath, 'status_sections', (item) => ({
-      title: requireStringField(item, 'title', filePath),
-      body: requireStringField(item, 'body', filePath),
-    })),
+    liveRoutes: {
+      title: requireStringField(data, 'live_routes_title', filePath),
+      intro: requireStringField(data, 'live_routes_intro', filePath),
+      items: parseStringArrayObjects(data.live_routes, filePath, 'live_routes', (item) => ({
+        label: requireStringField(item, 'label', filePath),
+        href: requireStringField(item, 'href', filePath),
+        summary: requireStringField(item, 'summary', filePath),
+      })),
+    },
     activeProjects: {
       title: requireStringField(data, 'active_projects_title', filePath),
       intro: requireStringField(data, 'active_projects_intro', filePath),
@@ -248,9 +285,21 @@ export const getNowContent = cache(async (): Promise<NowContent> => {
         summary: requireStringField(item, 'summary', filePath),
       })),
     },
-    explore: {
-      title: requireStringField(data, 'explore_title', filePath),
-      links: parseLinkArray(data.explore_links, filePath, 'explore_links'),
+    recentlyChanged: {
+      title: requireStringField(data, 'recently_changed_title', filePath),
+      items: requireStringArrayField(data, 'recently_changed', filePath),
+    },
+    nextLikelyWork: {
+      title: requireStringField(data, 'next_likely_work_title', filePath),
+      items: requireStringArrayField(data, 'next_likely_work', filePath),
+    },
+    whatStaysPrivate: {
+      title: requireStringField(data, 'what_stays_private_title', filePath),
+      body: requireStringField(data, 'what_stays_private_body', filePath),
+    },
+    agentMaintenance: {
+      title: requireStringField(data, 'agent_maintenance_title', filePath),
+      items: requireStringArrayField(data, 'agent_maintenance', filePath),
     },
   };
 });
