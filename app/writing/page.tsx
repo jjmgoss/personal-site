@@ -24,7 +24,7 @@ export default async function WritingPage() {
         {entries.map((entry) => (
           <li className="post-card" key={entry.slug}>
             <div className="stack-tight">
-              <p className="post-date">{entry.date}</p>
+              <p className="post-date">By {entry.author} · {entry.date}</p>
               <h2>
                 <Link href={`/writing/${entry.slug}`}>{entry.title}</Link>
               </h2>

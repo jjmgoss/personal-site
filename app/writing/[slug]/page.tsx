@@ -46,7 +46,7 @@ export default async function WritingDetailPage({ params }: WritingDetailPagePro
       </Link>
       <p className="eyebrow">Notes</p>
       <div className="stack-tight">
-        <p className="post-date">{entry.date}</p>
+        <p className="post-date">By {entry.author} · {entry.date}</p>
         <h1>{entry.title}</h1>
       </div>
       <p className="lede">{entry.summary}</p>

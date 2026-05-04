@@ -6,6 +6,7 @@ import { getProjectSlugs } from '@/lib/content/projects';
 export type WritingMetadata = {
   title: string;
   slug: string;
+  author: string;
   date: string;
   summary: string;
   tags: string[];
@@ -65,6 +66,7 @@ function requireDateField(data: Record<string, unknown>, field: string, filePath
 async function parseWritingMetadata(filePath: string, data: Record<string, unknown>): Promise<WritingMetadata> {
   const title = requireStringField(data, 'title', filePath);
   const slug = requireStringField(data, 'slug', filePath);
+  const author = requireStringField(data, 'author', filePath);
   const date = requireDateField(data, 'date', filePath);
   const summary = requireStringField(data, 'summary', filePath);
   const tags = requireStringArrayField(data, 'tags', filePath);
@@ -82,6 +84,7 @@ async function parseWritingMetadata(filePath: string, data: Record<string, unkno
   return {
     title,
     slug,
+    author,
     date,
     summary,
     tags,
