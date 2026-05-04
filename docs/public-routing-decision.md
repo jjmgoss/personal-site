@@ -77,6 +77,8 @@ This PR does not create DNS records, tunnel routes, or origin mappings.
 
 The chosen first model is Cloudflare Tunnel.
 
+The current public-safe setup guide for this path is `docs/cloudflare-tunnel-setup.md`.
+
 Planned future routing shape, still placeholder-safe:
 
 ```text
@@ -234,6 +236,8 @@ http://<synology-lan-host>:<configured-lan-port>
 The first public routing model should be easy to disable.
 
 The current rollback planning guide is `docs/cloudflare-tunnel-rollback.md`.
+
+The current setup planning guide is `docs/cloudflare-tunnel-setup.md`.
 
 Desired rollback posture:
 

@@ -1,0 +1,17 @@
+# Example only. Do not run this file without replacing placeholders outside the repository.
+# Do not commit real tunnel tokens, IDs, hostnames, or private origin details.
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command:
+      - tunnel
+      - run
+      - --token
+      - ${CLOUDFLARED_TUNNEL_TOKEN}
+    environment:
+      CLOUDFLARED_TUNNEL_TOKEN: <tunnel-token>
+
+# Intended placeholder-only relationship:
+# https://lab.jjmgoss.com -> Cloudflare Tunnel -> http://<origin-service>:<app-port>

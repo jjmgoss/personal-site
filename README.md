@@ -137,6 +137,8 @@ docker compose stop
 
 For the first Synology LAN deployment path, see `docs/synology-lan-deployment.md`.
 
+For public-safe setup planning for the first Cloudflare Tunnel hostname, see `docs/cloudflare-tunnel-setup.md`.
+
 For rollback planning before any future Cloudflare Tunnel public exposure, see `docs/cloudflare-tunnel-rollback.md`.
 
 After SSHing into the Synology repo checkout, the normal LAN update command is `./scripts/deploy-synology-lan.sh`.

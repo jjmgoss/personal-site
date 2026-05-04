@@ -10,6 +10,8 @@ The goal is to return safely to LAN-only operation without deleting the local ap
 
 This document is planning and rollback guidance only.
 
+For the corresponding setup-side planning guide, see `docs/cloudflare-tunnel-setup.md`.
+
 It does not:
 
 - create a Cloudflare Tunnel
