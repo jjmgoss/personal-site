@@ -16,4 +16,4 @@ docs_url: https://github.com/jjmgoss/personal-site/tree/main/docs
 
 This is what you're looking at right now.
 
-Simple front end, basically no backend, description of some of my personal projects.
+It is a small front end, basically no backend, and just enough structure to keep the projects and notes from dissolving into chat logs and half-remembered intentions.
