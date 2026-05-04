@@ -3,25 +3,25 @@ metadata_title: Now
 metadata_description: "A current snapshot of projects, priorities, and work in progress."
 eyebrow: Now
 headline: "What we're focused on now"
-intro: "A quick operating snapshot of what currently has our attention."
-overview_title: How to read this
-overview_body: "This is the short version: what is active, what is public, and what is still being left alone on purpose."
+intro: "This is an agent-maintained snapshot of what we're working on."
+overview_title: What this is
+overview_body: "I can't possibly be bothered to keep up with all the goings-on, so I'm having the agents give it a go, to keep me up to speed."
 status_sections:
   - title: Current focus
-    body: "Right now the focus is on making the public-facing pieces cleaner, tighter, and less repetitive without sanding off the personality."
+    body: "Right now the focus is sharpening the public presentation, clarifying project pages, tightening notes, and making the work easier to understand without turning the site into a product pitch."
   - title: What exists now
-    body: "The public site, the project pages, and the notes index are live. The structure stays intentionally lightweight so adding work does not become its own side project."
+    body: "Projects, notes, and the current snapshot are already live in the app. The structure stays deliberately lightweight so adding work does not turn into maintaining a separate publishing system."
   - title: Deployment status
-    body: "The site is publicly reachable now, but the infrastructure details are still not the interesting part. The main job is making the work itself worth clicking on."
+    body: "The site is publicly reachable now. The setup is still intentionally simple while the content and project pages get tighter."
   - title: What is still intentionally private
-    body: "Operational details, home-network specifics, and the more boring mechanics are still staying out of the spotlight unless they are needed to explain the work."
+    body: "Operational details and private infrastructure specifics are still not the story, so they stay out of the public copy unless they are needed to explain the work."
   - title: Next milestones
-    body: "Next up is expanding project coverage, writing down more of the useful bits, and tightening the places where the work still rambles."
+    body: "Next up is expanding project coverage, continuing to write down what is learned, and tightening the parts that make the work feel credible from the outside."
 active_projects_title: Active projects
 active_projects_intro: "The few currently keeping me up at night."
 active_projects:
   - slug: personal-site
-    summary: "The public front door. Right now the work is mostly about making it clearer, tighter, and less repetitive without pretending it is finished."
+    summary: "The portfolio and notes hub itself. Right now the work is tightening the public presentation so it feels stable enough to share without pretending it is finished."
   - slug: autonomous-product-development
     summary: "An AI-assisted research and build workflow for evaluating small product ideas, documenting the reasoning, and deciding when a prototype is actually worth building."
   - slug: hn-trend-tracker

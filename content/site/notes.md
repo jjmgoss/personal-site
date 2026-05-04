@@ -3,5 +3,5 @@ metadata_title: Notes
 metadata_description: Notes
 eyebrow: Loose ends
 headline: Notes from the workshop
-intro: Half-formed conclusions, workshop scraps, and the bits I wanted to remember before the next detour.
+intro: Vague recollections of my motivations, and observations while making these things
 ---

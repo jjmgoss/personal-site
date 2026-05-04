@@ -1,6 +1,7 @@
 ---
 title: Why do this?
 slug: why-do-this
+author: Jason Goss
 date: 2026-05-03
 summary: How did we get to this point?
 tags:
