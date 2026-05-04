@@ -139,6 +139,8 @@ The chosen first public routing model is Cloudflare Tunnel for `lab.jjmgoss.com`
 
 The current LAN-only Synology deployment remains the baseline until that later implementation work is explicitly approved.
 
+Before enabling any future Cloudflare Tunnel route, use `docs/cloudflare-tunnel-rollback.md` as the planning reference for temporary disablement and full rollback back to LAN-only operation.
+
 ### Option 1: Cloudflare Tunnel
 
 Cloudflare Tunnel avoids direct inbound port forwarding to the home network.
@@ -294,6 +296,8 @@ The initial rollback strategy can be simple:
 5. Document what failed.
 
 A more formal rollback process can be added later.
+
+For the planned Cloudflare Tunnel public-routing path, the current rollback planning doc is `docs/cloudflare-tunnel-rollback.md`.
 
 ## Public Safety Checklist
 
