@@ -23,18 +23,20 @@ active_projects:
   - slug: autonomous-product-development
     summary: "Still early and more conceptual than polished, but very much still on the books."
   - slug: hn-trend-tracker
-    summary: "Public now, still rough, and still the clearest example of a separate live app hanging off this site."
+    summary: "Public now, still rough, and now meaningfully more of a trend tracker: story history, top movers, curated themes, and derived-data cleanup are all in motion."
   - slug: repo-rails
     summary: "The repo setup and workflow toolkit responsible for making the agent-heavy project pattern repeatable on purpose."
 recently_changed_title: Recently changed
 recently_changed:
   - "The personal site is live at https://lab.jjmgoss.com."
   - "HN Trend Tracker is live at https://hn.jjmgoss.com and linked from the project catalog, which is only fair."
+  - "HN Trend Tracker added public story history pages, a Top Movers surface, curated theme pages, and a stronger push toward dbt-derived theme analytics."
   - "The site now has smoke tests, theme support, and tighter public-route verification, so fewer surprises are reaching production unannounced."
   - "Authorship and ownership rules now protect Jason-authored copy while leaving this page in the hands of the staff."
 next_likely_work_title: Next likely work
 next_likely_work:
   - "Keep tightening public polish and project-page clarity."
+  - "Keep stabilizing HN Trend Tracker's derived-data path and make the trend/history/theme surfaces less expensive to serve."
   - "Continue deployment hygiene and public-safe documentation around the live setup."
   - "Expand project coverage and make the catalog more useful without turning it into a product pitch or a filing cabinet."
 agent_maintenance_title: Agent maintenance notes
